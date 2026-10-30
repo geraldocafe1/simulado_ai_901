@@ -41,9 +41,9 @@ document.addEventListener('DOMContentLoaded', () => {
       id: 'az900_1',
       courseId: 'az-900',
       courseCode: 'AZ-900',
-      shortName: 'Simulado 1 AZ-900 (73Q)',
+      shortName: 'Simulado 1 (73Q)',
       title: 'Simulado 1: Microsoft AZ-900 (Quizizz 2024 - 73 Questões)',
-      badge: 'AZ-900 (73Q)',
+      badge: 'AZ-900 SIM 1 (73Q)',
       subtitle: 'Exame AZ-900: Microsoft Azure Fundamentals (73 Questões Comentadas PT-BR)',
       description: 'Bateria completa de 73 questões cobrindo Conceitos da Nuvem (IaaS, PaaS, SaaS, CapEx/OpEx), Arquitetura e Serviços do Azure (VMs, Redes, Armazenamento, Entra ID) e Governança e Gerenciamento (RBAC, Locks, Policy, TCO, Advisor).',
       suggestedTime: '60 min',
@@ -51,6 +51,21 @@ document.addEventListener('DOMContentLoaded', () => {
       leaderboardTitle: 'Ranking Geral da Turma - AZ-900 Simulado 1 (73Q)',
       modalLeaderboardTitle: 'Ranking da Turma - AZ-900 (Simulado 1 - 73Q)',
       questions: typeof AZ900_SIMULADO_1_QUESTIONS !== 'undefined' ? AZ900_SIMULADO_1_QUESTIONS : []
+    },
+    az900_2: {
+      id: 'az900_2',
+      courseId: 'az-900',
+      courseCode: 'AZ-900',
+      shortName: 'Simulado 2 (65Q)',
+      title: 'Simulado 2: Microsoft AZ-900 (Simulado 03 - 65 Questões)',
+      badge: 'AZ-900 SIM 2 (65Q)',
+      subtitle: 'Exame AZ-900: Microsoft Azure Fundamentals — Simulado 03 (65 Questões Comentadas PT-BR)',
+      description: 'Segunda bateria de 65 questões do AZ-900 abordando DevTest Labs, Service Fabric, Azure Virtual Desktop, ExpressRoute, Política de Ciclo de Vida Moderna, Planos de Suporte (Professional Direct), Monitor, Service Health e otimização de custos.',
+      suggestedTime: '55 min',
+      reportSubtitle: 'Simulado 2 (Quizizz 03 - 2024) for Exam AZ-900: Microsoft Azure Fundamentals (65 Questões)',
+      leaderboardTitle: 'Ranking Geral da Turma - AZ-900 Simulado 2 (65Q)',
+      modalLeaderboardTitle: 'Ranking da Turma - AZ-900 (Simulado 2 - 65Q)',
+      questions: typeof AZ900_SIMULADO_2_QUESTIONS !== 'undefined' ? AZ900_SIMULADO_2_QUESTIONS : []
     },
     dp900_1: {
       id: 'dp900_1',
@@ -210,7 +225,7 @@ document.addEventListener('DOMContentLoaded', () => {
       accent: '#0078d4',
       status: 'available',
       description: 'Conceitos de nuvem, arquitetura e serviços principais do Azure (Computação, Rede, Armazenamento), segurança e governança.',
-      exams: ['az900_1']
+      exams: ['az900_1', 'az900_2']
     },
     {
       id: 'dp-900',
