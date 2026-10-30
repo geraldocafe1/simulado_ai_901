@@ -839,3 +839,4 @@ if (typeof module !== 'undefined' && module.exports) {
 
 fs.writeFileSync('simulado2_data.js', jsOutput, 'utf-8');
 console.log('Successfully generated simulado2_data.json and simulado2_data.js with 30 questions!');
+

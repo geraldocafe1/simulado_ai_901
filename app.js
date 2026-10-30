@@ -1,47 +1,132 @@
 // ==========================================================================
-// SIMULADO OFICIAL MICROSOFT AI-901 - APP.JS (SUPORTE A SIMULADO 1 E SIMULADO 2)
+// PORTAL DE SIMULADOS POR CURSO (MICROSOFT, AWS, GOOGLE CLOUD) - APP.JS
 // ==========================================================================
 
 document.addEventListener('DOMContentLoaded', () => {
-  // Exams Registry
+  // ========================================================================
+  // 1. CATÁLOGO DE CURSOS E SIMULADOS
+  // ========================================================================
   const EXAMS_CONFIG = {
     simulado1: {
       id: 'simulado1',
-      title: 'Microsoft Practice Assessment',
+      courseId: 'ai-901',
+      courseCode: 'AI-901',
+      shortName: 'Simulado 1 (50Q)',
+      title: 'Simulado 1: Microsoft Practice Assessment Oficial',
       badge: 'OFICIAL (50Q)',
       subtitle: 'Exame AI-901: Microsoft Azure AI Fundamentals (50 Questões Oficiais)',
+      description: 'Avaliação prática oficial do Microsoft Learn cobrindo todos os conceitos fundamentais de IA, IA Responsável e implementação com o Microsoft Foundry.',
+      suggestedTime: '45 min',
       reportSubtitle: 'Microsoft Practice Assessment for Exam AI-901: Microsoft Azure AI Fundamentals (50 Questões)',
-      leaderboardTitle: 'Ranking Geral da Turma - Simulado 1 (50Q)',
+      leaderboardTitle: 'Ranking Geral da Turma - AI-901 Simulado 1 (50Q)',
       modalLeaderboardTitle: 'Ranking da Turma - AI-901 (Simulado 1 - 50Q)',
       questions: typeof SIMULADO_QUESTIONS !== 'undefined' ? SIMULADO_QUESTIONS : []
     },
     simulado2: {
       id: 'simulado2',
-      title: 'Simulado ExamTopics AI-901',
+      courseId: 'ai-901',
+      courseCode: 'AI-901',
+      shortName: 'Simulado 2 (30Q)',
+      title: 'Simulado 2: Questões de Exame ExamTopics (PT-BR)',
       badge: 'SIMULADO 2 (30Q)',
       subtitle: 'Exame AI-901: 30 Questões Extraídas ExamTopics Traduzidas e Comentadas (PT-BR)',
+      description: 'Bateria de 30 questões reais extraídas do ExamTopics, incluindo questões de código Python (Azure Speech SDK, OpenAI Responses API, Content Understanding), Hotspot e Arrastar e Soltar.',
+      suggestedTime: '35 min',
       reportSubtitle: 'Simulado 2 (ExamTopics) for Exam AI-901: Microsoft Azure AI Fundamentals (30 Questões)',
-      leaderboardTitle: 'Ranking Geral da Turma - Simulado 2 (30Q ExamTopics)',
+      leaderboardTitle: 'Ranking Geral da Turma - AI-901 Simulado 2 (30Q ExamTopics)',
       modalLeaderboardTitle: 'Ranking da Turma - AI-901 (Simulado 2 - 30Q)',
       questions: typeof SIMULADO_2_QUESTIONS !== 'undefined' ? SIMULADO_2_QUESTIONS : []
     }
   };
 
-  // Detect initial exam from URL or window.DEFAULT_EXAM_ID
-  function detectInitialExamId() {
-    if (window.DEFAULT_EXAM_ID === 'simulado2') return 'simulado2';
+  const COURSES_CATALOG = [
+    {
+      id: 'ai-901',
+      code: 'AI-901',
+      title: 'Microsoft Azure AI Fundamentals',
+      provider: 'microsoft',
+      providerName: '🟦 Microsoft Azure',
+      accent: '#0078d4',
+      status: 'available',
+      description: 'Fundamentos de Inteligência Artificial, IA Generativa, Agentes de IA, Visão Computacional, Fala e Microsoft Foundry.',
+      exams: ['simulado1', 'simulado2']
+    },
+    {
+      id: 'az-900',
+      code: 'AZ-900',
+      title: 'Microsoft Azure Fundamentals',
+      provider: 'microsoft',
+      providerName: '🟦 Microsoft Azure',
+      accent: '#0078d4',
+      status: 'soon',
+      description: 'Conceitos de nuvem, arquitetura e serviços principais do Azure (Computação, Rede, Armazenamento), segurança e governança.',
+      exams: []
+    },
+    {
+      id: 'dp-900',
+      code: 'DP-900',
+      title: 'Microsoft Azure Data Fundamentals',
+      provider: 'microsoft',
+      providerName: '🟦 Microsoft Azure',
+      accent: '#005a9e',
+      status: 'soon',
+      description: 'Conceitos fundamentais de bancos de dados relacionais e não relacionais, workloads transacionais e análises no Microsoft Azure.',
+      exams: []
+    },
+    {
+      id: 'aws-clf-c02',
+      code: 'CLF-C02',
+      title: 'AWS Certified Cloud Practitioner',
+      provider: 'aws',
+      providerName: '🟧 Amazon Web Services',
+      accent: '#ff9900',
+      status: 'soon',
+      description: 'Fundamentos da nuvem AWS, infraestrutura global, responsabilidade compartilhada, segurança, EC2, S3, RDS e faturamento.',
+      exams: []
+    },
+    {
+      id: 'gcp-ace',
+      code: 'GCP-ACE',
+      title: 'Google Cloud Associate Engineer',
+      provider: 'google',
+      providerName: '🟨 Google Cloud Platform',
+      accent: '#4285f4',
+      status: 'soon',
+      description: 'Implantação de aplicativos, monitoramento de operações e gerenciamento de soluções corporativas no Google Cloud Engine & GKE.',
+      exams: []
+    }
+  ];
+
+  // ========================================================================
+  // 2. ESTADO GLOBAL E DETECÇÃO DE ROTA INICIAL
+  // ========================================================================
+  let selectedProviderFilter = 'all';
+  let selectedCourseId = 'ai-901';
+
+  function detectInitialRoute() {
+    if (window.DEFAULT_EXAM_ID === 'simulado2') {
+      return { view: 'lobby', examId: 'simulado2' };
+    }
     const params = new URLSearchParams(window.location.search);
     const simParam = params.get('simulado') || params.get('exam');
-    if (simParam === '2' || simParam === 'simulado2') return 'simulado2';
-    if (window.location.pathname.toLowerCase().includes('/simulado2')) return 'simulado2';
-    return 'simulado1';
+    if (simParam === '2' || simParam === 'simulado2') {
+      return { view: 'lobby', examId: 'simulado2' };
+    }
+    if (simParam === '1' || simParam === 'simulado1') {
+      return { view: 'lobby', examId: 'simulado1' };
+    }
+    if (window.location.pathname.toLowerCase().includes('/simulado2')) {
+      return { view: 'lobby', examId: 'simulado2' };
+    }
+    return { view: 'hub', examId: 'simulado1' };
   }
 
-  let currentExamId = detectInitialExamId();
+  const initialRoute = detectInitialRoute();
+  let currentExamId = initialRoute.examId;
   let activeQuestions = EXAMS_CONFIG[currentExamId].questions;
   let totalQuestions = activeQuestions.length;
 
-  // Per-exam state storage so switching exams preserves progress
+  // Per-exam state storage
   const examStates = {
     simulado1: {
       currentQuestionIndex: 0,
@@ -83,16 +168,20 @@ document.addEventListener('DOMContentLoaded', () => {
   let timerSeconds = examStates[currentExamId].timerSeconds;
   let timerInterval = null;
 
-  // Selected chip state for click-to-assign in drag_drop questions
   let selectedDragChipValue = null;
 
-  // Modes: 'study' (default with instant solutions) or 'exam' (strict exam)
+  // Modes: 'study' (no timer, instant solutions) or 'exam' (timer active, solutions hidden until finish)
   let appMode = 'study';
 
-  // Active Screen: 'question', 'review', or 'score'
-  let currentView = 'question';
+  // Active Screen: 'hub', 'lobby', 'question', 'review', or 'score'
+  let currentView = initialRoute.view;
 
   // DOM Elements
+  const hubView = document.getElementById('hubView');
+  const coursesGridContainer = document.getElementById('coursesGridContainer');
+  const courseQuizzesSection = document.getElementById('courseQuizzesSection');
+  const lobbyView = document.getElementById('lobbyView');
+  const lobbyCard = document.getElementById('lobbyCard');
   const questionView = document.getElementById('questionView');
   const reviewView = document.getElementById('reviewView');
   const scoreReportView = document.getElementById('scoreReportView');
@@ -101,6 +190,9 @@ document.addEventListener('DOMContentLoaded', () => {
   const progressText = document.getElementById('progressText');
   const progressStrip = document.getElementById('progressStrip');
 
+  const brandHomeLink = document.getElementById('brandHomeLink');
+  const btnGoHub = document.getElementById('btnGoHub');
+  const examActiveControls = document.getElementById('examActiveControls');
   const headerMainTitle = document.getElementById('headerMainTitle');
   const headerBadge = document.getElementById('headerBadge');
   const headerSubTitle = document.getElementById('headerSubTitle');
@@ -110,6 +202,7 @@ document.addEventListener('DOMContentLoaded', () => {
 
   const modeToggleBtn = document.getElementById('modeToggleBtn');
   const themeToggleBtn = document.getElementById('themeToggleBtn');
+  const timerBox = document.getElementById('timerBox');
   const timerDisplay = document.getElementById('timerDisplay');
   const btnOpenReview = document.getElementById('btnOpenReview');
 
@@ -145,7 +238,7 @@ document.addEventListener('DOMContentLoaded', () => {
   const leaderboardTitle = document.getElementById('leaderboardTitle');
   const modalLeaderboardTitle = document.getElementById('modalLeaderboardTitle');
 
-  // Markdown Formatter Helper
+  // Helpers
   function formatMarkdown(text) {
     if (!text) return '';
     return text
@@ -155,7 +248,6 @@ document.addEventListener('DOMContentLoaded', () => {
       .replace(/\n/g, '<br>');
   }
 
-  // Escape HTML helper
   function escapeHtml(text) {
     if (!text) return '';
     return String(text)
@@ -166,16 +258,93 @@ document.addEventListener('DOMContentLoaded', () => {
   }
 
   // ========================================================================
-  // EXAM SWITCHING (SIMULADO 1 <-> SIMULADO 2)
+  // 3. CRONÔMETRO (ATIVO SOMENTE NO MODO SIMULADO DE EXAME)
   // ========================================================================
-  function updateExamMetadataUI() {
+  function updateTimerDisplay() {
+    if (!timerDisplay) return;
+    const mins = String(Math.floor(timerSeconds / 60)).padStart(2, '0');
+    const secs = String(timerSeconds % 60).padStart(2, '0');
+    timerDisplay.textContent = `${mins}:${secs}`;
+  }
+
+  function stopTimer() {
+    if (timerInterval) {
+      clearInterval(timerInterval);
+      timerInterval = null;
+    }
+  }
+
+  function syncTimerStateWithModeAndView() {
+    const isDuringExam = (currentView === 'question' || currentView === 'review');
+    if (appMode === 'exam' && isDuringExam) {
+      if (timerBox) timerBox.style.display = 'flex';
+      if (!timerInterval) {
+        timerInterval = setInterval(() => {
+          timerSeconds++;
+          examStates[currentExamId].timerSeconds = timerSeconds;
+          updateTimerDisplay();
+        }, 1000);
+      }
+    } else {
+      stopTimer();
+      if (timerBox) timerBox.style.display = 'none';
+    }
+  }
+
+  function setAppMode(newMode) {
+    appMode = newMode;
+    if (modeToggleBtn) {
+      if (appMode === 'exam') {
+        modeToggleBtn.className = 'mode-badge mode-exam';
+        modeToggleBtn.innerHTML = '<span>📝</span> Modo Simulado (Exame)';
+      } else {
+        modeToggleBtn.className = 'mode-badge mode-study';
+        modeToggleBtn.innerHTML = '<span>💡</span> Modo Estudo';
+      }
+    }
+    syncTimerStateWithModeAndView();
+  }
+
+  // ========================================================================
+  // 4. GERENCIAMENTO DE SIMULADO ATIVO E CABEÇALHO
+  // ========================================================================
+  function loadExamPointers(targetExamId) {
+    if (!EXAMS_CONFIG[targetExamId]) return;
+    examStates[currentExamId].currentQuestionIndex = currentQuestionIndex;
+    examStates[currentExamId].timerSeconds = timerSeconds;
+
+    currentExamId = targetExamId;
+    activeQuestions = EXAMS_CONFIG[currentExamId].questions;
+    totalQuestions = activeQuestions.length;
+    currentQuestionIndex = examStates[currentExamId].currentQuestionIndex;
+    userAnswers = examStates[currentExamId].userAnswers;
+    flaggedQuestions = examStates[currentExamId].flaggedQuestions;
+    solutionRevealed = examStates[currentExamId].solutionRevealed;
+    attemptCount = examStates[currentExamId].attemptCount;
+    failedInPreviousAttempt = examStates[currentExamId].failedInPreviousAttempt;
+    timerSeconds = examStates[currentExamId].timerSeconds;
+    selectedDragChipValue = null;
+  }
+
+  function updateHeaderAndExamMetadata() {
     const cfg = EXAMS_CONFIG[currentExamId];
     totalQuestions = activeQuestions.length;
     const targetPass = Math.ceil(totalQuestions * 0.8);
 
-    if (headerMainTitle) headerMainTitle.textContent = cfg.title;
-    if (headerBadge) headerBadge.textContent = cfg.badge;
-    if (headerSubTitle) headerSubTitle.textContent = cfg.subtitle;
+    if (currentView === 'hub') {
+      if (headerMainTitle) headerMainTitle.textContent = 'Portal de Simulados Cloud & IA';
+      if (headerBadge) headerBadge.textContent = 'HUB OFICIAL';
+      if (headerSubTitle) headerSubTitle.textContent = 'Preparatório Oficial para Certificações Microsoft, AWS e Google Cloud';
+      if (examActiveControls) examActiveControls.style.display = 'none';
+    } else {
+      if (headerMainTitle) headerMainTitle.textContent = cfg.title;
+      if (headerBadge) headerBadge.textContent = cfg.badge;
+      if (headerSubTitle) headerSubTitle.textContent = cfg.subtitle;
+      if (examActiveControls) {
+        examActiveControls.style.display = (currentView === 'question' || currentView === 'review') ? 'inline-flex' : 'none';
+      }
+    }
+
     if (scoreReportSubtitle) scoreReportSubtitle.textContent = cfg.reportSubtitle;
     if (leaderboardTitle) leaderboardTitle.textContent = cfg.leaderboardTitle;
     if (modalLeaderboardTitle) modalLeaderboardTitle.textContent = cfg.modalLeaderboardTitle;
@@ -193,124 +362,418 @@ document.addEventListener('DOMContentLoaded', () => {
     if (window.Leaderboard && typeof window.Leaderboard.setActiveExam === 'function') {
       window.Leaderboard.setActiveExam(currentExamId);
     }
-  }
 
-  function switchExam(targetExamId) {
-    if (!EXAMS_CONFIG[targetExamId] || targetExamId === currentExamId) return;
-
-    // Save current state
-    examStates[currentExamId].currentQuestionIndex = currentQuestionIndex;
-    examStates[currentExamId].timerSeconds = timerSeconds;
-
-    // Switch pointer
-    currentExamId = targetExamId;
-    activeQuestions = EXAMS_CONFIG[currentExamId].questions;
-    currentQuestionIndex = examStates[currentExamId].currentQuestionIndex;
-    userAnswers = examStates[currentExamId].userAnswers;
-    flaggedQuestions = examStates[currentExamId].flaggedQuestions;
-    solutionRevealed = examStates[currentExamId].solutionRevealed;
-    attemptCount = examStates[currentExamId].attemptCount;
-    failedInPreviousAttempt = examStates[currentExamId].failedInPreviousAttempt;
-    timerSeconds = examStates[currentExamId].timerSeconds;
-    selectedDragChipValue = null;
-
-    // Update URL query param cleanly without reloading page
-    try {
-      const url = new URL(window.location.href);
-      if ( !window.location.pathname.toLowerCase().includes('/simulado2') ) {
-        if (currentExamId === 'simulado2') {
-          url.searchParams.set('simulado', '2');
-        } else {
-          url.searchParams.delete('simulado');
-          url.searchParams.delete('exam');
-        }
-        window.history.replaceState({}, '', url.toString());
-      }
-    } catch (e) {}
-
-    updateExamMetadataUI();
     updateTimerDisplay();
-    startTimer();
-    switchView('question');
+    syncTimerStateWithModeAndView();
   }
 
-  if (btnSelectSimulado1) {
-    btnSelectSimulado1.addEventListener('click', () => {
+  function buildShareUrlForExam(examId) {
+    try {
+      const u = new URL(window.location.href);
+      u.search = '';
+      u.hash = '';
+      let basePath = u.pathname.replace(/\/simulado2\/?(index\.html)?$/i, '/').replace(/\/index\.html$/i, '/');
+      if (!basePath.endsWith('/')) basePath += '/';
+      if (examId === 'simulado2') {
+        u.pathname = basePath + 'simulado2/';
+      } else if (examId === 'simulado1') {
+        u.pathname = basePath;
+        u.searchParams.set('simulado', '1');
+      } else {
+        u.pathname = basePath;
+      }
+      return u.toString();
+    } catch (e) {
+      return window.location.href;
+    }
+  }
+
+  async function copyUrlToClipboard(url, buttonEl) {
+    try {
+      await navigator.clipboard.writeText(url);
+    } catch (err) {
+      const tempInput = document.createElement('input');
+      tempInput.value = url;
+      document.body.appendChild(tempInput);
+      tempInput.select();
+      document.execCommand('copy');
+      document.body.removeChild(tempInput);
+    }
+
+    if (buttonEl) {
+      const originalHtml = buttonEl.innerHTML;
+      buttonEl.innerHTML = '<span>✅</span> <span>Link Copiado!</span>';
+      setTimeout(() => {
+        buttonEl.innerHTML = originalHtml;
+      }, 2000);
+    }
+  }
+
+  if (btnCopyShareLink) {
+    btnCopyShareLink.addEventListener('click', () => {
+      const targetUrl = currentView === 'hub' ? buildShareUrlForExam(null) : buildShareUrlForExam(currentExamId);
+      copyUrlToClipboard(targetUrl, btnCopyShareLink);
+    });
+  }
+
+  // ========================================================================
+  // 5. PÁGINA INICIAL POR CURSO (HUB VIEW) & LOBBY PRÉ-EXAME
+  // ========================================================================
+  function renderHubView() {
+    // 1. Render Course Cards Grid
+    const filteredCourses = COURSES_CATALOG.filter(c => {
+      if (selectedProviderFilter === 'all') return true;
+      return c.provider === selectedProviderFilter;
+    });
+
+    if (!filteredCourses.some(c => c.id === selectedCourseId) && filteredCourses.length > 0) {
+      selectedCourseId = filteredCourses[0].id;
+    }
+
+    let coursesHtml = '';
+    filteredCourses.forEach(course => {
+      const isSelected = course.id === selectedCourseId;
+      const isAvailable = course.status === 'available';
+      const quizCount = course.exams.length;
+
+      coursesHtml += `
+        <div class="course-card ${isSelected ? 'selected' : ''} ${!isAvailable ? 'coming-soon' : ''}"
+             style="--course-accent: ${course.accent};"
+             data-course-id="${course.id}">
+          <div>
+            <div class="course-card-top">
+              <span class="course-code-badge">${escapeHtml(course.code)}</span>
+              <span class="course-status-pill ${isAvailable ? 'available' : 'soon'}">
+                ${isAvailable ? `🟢 ${quizCount} Simulados` : '⏳ Em Breve'}
+              </span>
+            </div>
+            <div class="course-provider-label">${escapeHtml(course.providerName)}</div>
+            <h3 class="course-title">${escapeHtml(course.title)}</h3>
+            <p class="course-desc">${escapeHtml(course.description)}</p>
+          </div>
+          <div class="course-card-footer">
+            <span>${isAvailable ? 'Ver Simulados do Curso' : 'Estrutura Preparada'}</span>
+            <span>→</span>
+          </div>
+        </div>
+      `;
+    });
+
+    if (coursesGridContainer) {
+      coursesGridContainer.innerHTML = coursesHtml;
+      coursesGridContainer.querySelectorAll('.course-card[data-course-id]').forEach(card => {
+        card.addEventListener('click', () => {
+          selectedCourseId = card.getAttribute('data-course-id');
+          renderHubView();
+          if (courseQuizzesSection) {
+            courseQuizzesSection.scrollIntoView({ behavior: 'smooth', block: 'nearest' });
+          }
+        });
+      });
+    }
+
+    // 2. Render Selected Course's Quizzes List
+    const selectedCourse = COURSES_CATALOG.find(c => c.id === selectedCourseId) || COURSES_CATALOG[0];
+    if (!courseQuizzesSection || !selectedCourse) return;
+
+    if (selectedCourse.exams.length === 0) {
+      courseQuizzesSection.innerHTML = `
+        <div class="course-quizzes-header">
+          <div>
+            <span class="course-code-badge" style="margin-bottom: 6px; display: inline-block;">${escapeHtml(selectedCourse.code)}</span>
+            <h2 style="font-size: 1.4rem; margin: 4px 0;">${escapeHtml(selectedCourse.title)}</h2>
+            <p style="font-size: 0.9rem; color: var(--text-secondary);">${escapeHtml(selectedCourse.description)}</p>
+          </div>
+        </div>
+        <div style="text-align: center; padding: 2.5rem 1rem; color: var(--text-secondary);">
+          <div style="font-size: 2.5rem; margin-bottom: 0.75rem;">🚧</div>
+          <h3 style="color: var(--text-primary); margin-bottom: 0.5rem;">Simulados deste curso em preparação!</h3>
+          <p style="max-width: 520px; margin: 0 auto 1.25rem; font-size: 0.92rem;">
+            A estrutura para o curso <strong>${escapeHtml(selectedCourse.code)} - ${escapeHtml(selectedCourse.title)}</strong> já está pronta no portal. Assim que você enviar o arquivo de questões deste exame, os simulados aparecerão listados aqui!
+          </p>
+          <button class="btn-ms btn-ms-primary" id="btnBackToAI901">
+            <span>📘</span> Ver Simulados Disponíveis (AI-901)
+          </button>
+        </div>
+      `;
+      const btnBackAI = document.getElementById('btnBackToAI901');
+      if (btnBackAI) {
+        btnBackAI.addEventListener('click', () => {
+          selectedProviderFilter = 'all';
+          selectedCourseId = 'ai-901';
+          document.querySelectorAll('.provider-tab').forEach(t => {
+            t.classList.toggle('active', t.getAttribute('data-provider') === 'all');
+          });
+          renderHubView();
+        });
+      }
+      return;
+    }
+
+    const quizzesCardsHtml = selectedCourse.exams.map(examId => {
+      const ex = EXAMS_CONFIG[examId];
+      const qCount = ex.questions.length;
+      const passCount = Math.ceil(qCount * 0.8);
+
+      return `
+        <div class="quiz-item-card">
+          <div>
+            <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 0.6rem; gap: 8px;">
+              <span class="ms-badge-beta">${escapeHtml(ex.badge)}</span>
+              <span style="font-size: 0.8rem; color: var(--text-secondary); font-weight: 600;">Código: ${escapeHtml(ex.courseCode)}</span>
+            </div>
+            <h3 style="font-size: 1.18rem; margin-bottom: 0.45rem; color: var(--text-primary);">${escapeHtml(ex.title)}</h3>
+            <p style="font-size: 0.88rem; color: var(--text-secondary); line-height: 1.45;">${escapeHtml(ex.description)}</p>
+
+            <div class="quiz-meta-tags">
+              <span class="quiz-meta-tag">📋 <strong>${qCount} Questões</strong></span>
+              <span class="quiz-meta-tag">🎯 Meta: <strong>80% (${passCount}/${qCount})</strong></span>
+              <span class="quiz-meta-tag">⏱️ Tempo sugerido: <strong>${escapeHtml(ex.suggestedTime)}</strong></span>
+              <span class="quiz-meta-tag">🇵🇹 <strong>Português (PT-BR)</strong></span>
+            </div>
+          </div>
+
+          <div class="quiz-card-actions">
+            <button class="btn-ms btn-ms-primary" data-open-lobby="${ex.id}" style="flex: 1; justify-content: center;">
+              <span>🚀</span> Selecionar Simulado
+            </button>
+            <button class="btn-ms btn-ms-secondary" data-open-ranking="${ex.id}" title="Ver Ranking da Turma deste Simulado">
+              <span>🏆</span> Ranking
+            </button>
+            <button class="btn-ms btn-ms-secondary" data-share-exam="${ex.id}" title="Copiar link direto deste simulado">
+              <span>🔗</span> Link
+            </button>
+          </div>
+        </div>
+      `;
+    }).join('');
+
+    courseQuizzesSection.innerHTML = `
+      <div class="course-quizzes-header">
+        <div>
+          <div style="display: flex; align-items: center; gap: 8px; margin-bottom: 4px;">
+            <span class="course-code-badge">${escapeHtml(selectedCourse.code)}</span>
+            <span style="font-size: 0.85rem; color: var(--text-secondary); font-weight: 600;">${escapeHtml(selectedCourse.providerName)}</span>
+          </div>
+          <h2 style="font-size: 1.4rem; margin: 2px 0;">Simulados Disponíveis — ${escapeHtml(selectedCourse.title)}</h2>
+          <p style="font-size: 0.9rem; color: var(--text-secondary);">Escolha um dos simulados abaixo. O cronômetro só será iniciado se você optar pelo <strong>Modo Simulado (Exame)</strong>.</p>
+        </div>
+      </div>
+      <div class="quizzes-list-grid">
+        ${quizzesCardsHtml}
+      </div>
+    `;
+
+    // Attach quiz card buttons
+    courseQuizzesSection.querySelectorAll('button[data-open-lobby]').forEach(btn => {
+      btn.addEventListener('click', () => {
+        const exId = btn.getAttribute('data-open-lobby');
+        openExamLobby(exId);
+      });
+    });
+
+    courseQuizzesSection.querySelectorAll('button[data-open-ranking]').forEach(btn => {
+      btn.addEventListener('click', () => {
+        const exId = btn.getAttribute('data-open-ranking');
+        loadExamPointers(exId);
+        updateHeaderAndExamMetadata();
+        if (window.Leaderboard && typeof window.Leaderboard.openModal === 'function') {
+          window.Leaderboard.openModal();
+        }
+      });
+    });
+
+    courseQuizzesSection.querySelectorAll('button[data-share-exam]').forEach(btn => {
+      btn.addEventListener('click', () => {
+        const exId = btn.getAttribute('data-share-exam');
+        const url = buildShareUrlForExam(exId);
+        copyUrlToClipboard(url, btn);
+      });
+    });
+  }
+
+  // Provider Filter Tabs in Hub
+  document.querySelectorAll('.provider-tab[data-provider]').forEach(tab => {
+    tab.addEventListener('click', () => {
+      document.querySelectorAll('.provider-tab').forEach(t => t.classList.remove('active'));
+      tab.classList.add('active');
+      selectedProviderFilter = tab.getAttribute('data-provider');
+      renderHubView();
+    });
+  });
+
+  // Open Lobby for a specific exam (before starting timer!)
+  function openExamLobby(examId) {
+    loadExamPointers(examId);
+    stopTimer();
+    switchView('lobby');
+  }
+
+  function renderLobbyView() {
+    if (!lobbyCard) return;
+    const cfg = EXAMS_CONFIG[currentExamId];
+    const qCount = activeQuestions.length;
+    const passCount = Math.ceil(qCount * 0.8);
+    const answeredSoFar = activeQuestions.filter(q => isQuestionAnswered(q)).length;
+
+    lobbyCard.innerHTML = `
+      <div class="lobby-top-bar">
+        <button class="btn-ms btn-ms-secondary" id="btnBackToHubFromLobby">
+          <span>‹</span> Voltar aos Cursos e Simulados
+        </button>
+        <div style="display: flex; gap: 8px; align-items: center;">
+          <span class="course-code-badge">${escapeHtml(cfg.courseCode)}</span>
+          <span class="ms-badge-beta">${escapeHtml(cfg.badge)}</span>
+        </div>
+      </div>
+
+      <h1 class="lobby-exam-title">${escapeHtml(cfg.title)}</h1>
+      <p class="lobby-exam-subtitle">${escapeHtml(cfg.description)}</p>
+
+      <div class="lobby-stats-row">
+        <div class="lobby-stat-box">
+          <div class="lobby-stat-value">${qCount}</div>
+          <div class="lobby-stat-label">Total de Questões</div>
+        </div>
+        <div class="lobby-stat-box">
+          <div class="lobby-stat-value">80% (${passCount}/${qCount})</div>
+          <div class="lobby-stat-label">Nota de Aprovação</div>
+        </div>
+        <div class="lobby-stat-box">
+          <div class="lobby-stat-value">${escapeHtml(cfg.suggestedTime)}</div>
+          <div class="lobby-stat-label">Tempo Sugerido</div>
+        </div>
+        <div class="lobby-stat-box">
+          <div class="lobby-stat-value">⏸️ Parado</div>
+          <div class="lobby-stat-label">Status do Relógio</div>
+        </div>
+      </div>
+
+      ${answeredSoFar > 0 ? `
+        <div class="score-comparison-banner" style="margin-bottom: 1.25rem;">
+          <span>📌</span>
+          <span>Você possui uma sessão em andamento com <strong>${answeredSoFar} de ${qCount}</strong> questões respondidas. Ao iniciar abaixo, você continuará de onde parou (ou clique em Redefinir para zerar).</span>
+        </div>
+      ` : ''}
+
+      <h3 style="font-size: 1.1rem; margin-bottom: 0.5rem;">Como você deseja realizar este simulado?</h3>
+      <p style="font-size: 0.9rem; color: var(--text-secondary); margin-bottom: 1rem;">
+        Escolha o modo abaixo. <strong>O cronômetro somente será ativado se você escolher o Modo Simulado (Exame).</strong>
+      </p>
+
+      <div class="lobby-mode-grid">
+        <!-- Modo Estudo (Sem Relógio) -->
+        <div class="lobby-mode-card">
+          <div>
+            <div class="lobby-mode-title" style="color: var(--ms-blue-primary);">
+              <span>💡</span> Modo Estudo (Sem Relógio)
+            </div>
+            <p style="font-size: 0.88rem; color: var(--text-secondary);">
+              Ideal para aprender e revisar cada conceito com calma, sem pressão de tempo.
+            </p>
+            <ul class="lobby-mode-list">
+              <li>✅ <strong>Relógio desativado</strong> (sem contagem de tempo)</li>
+              <li>✅ Botão <strong>"Mostrar Solução"</strong> liberado em cada questão</li>
+              <li>✅ Explicações detalhadas e links para o Microsoft Learn</li>
+            </ul>
+          </div>
+          <button class="btn-ms btn-ms-secondary" id="btnStartStudyMode" style="width: 100%; justify-content: center; padding: 10px 16px; font-size: 0.95rem;">
+            <span>💡</span> Iniciar no Modo Estudo
+          </button>
+        </div>
+
+        <!-- Modo Simulado Exame (Com Relógio) -->
+        <div class="lobby-mode-card exam-mode-highlight">
+          <div>
+            <div class="lobby-mode-title" style="color: #7b1fa2;">
+              <span>📝</span> Modo Simulado Exame (Com Relógio)
+            </div>
+            <p style="font-size: 0.88rem; color: var(--text-secondary);">
+              Simulação real da prova de certificação oficial e disputa no Ranking da Turma.
+            </p>
+            <ul class="lobby-mode-list">
+              <li>⏱️ <strong>Inicia o cronômetro oficial</strong> imediatamente</li>
+              <li>🔒 Gabarito oculto durante a realização da prova</li>
+              <li>🏆 Permite publicar sua nota e tempo no <strong>Ranking da Turma</strong></li>
+            </ul>
+          </div>
+          <button class="btn-ms btn-ms-primary" id="btnStartExamMode" style="width: 100%; justify-content: center; padding: 10px 16px; font-size: 0.95rem; background-color: #7b1fa2; border-color: #7b1fa2;">
+            <span>⏱️</span> Iniciar Modo Simulado (Ativar Relógio)
+          </button>
+        </div>
+      </div>
+    `;
+
+    const btnBackHub = document.getElementById('btnBackToHubFromLobby');
+    if (btnBackHub) {
+      btnBackHub.addEventListener('click', () => {
+        goToCourseHub();
+      });
+    }
+
+    const btnStudy = document.getElementById('btnStartStudyMode');
+    if (btnStudy) {
+      btnStudy.addEventListener('click', () => {
+        setAppMode('study');
+        switchView('question');
+      });
+    }
+
+    const btnExam = document.getElementById('btnStartExamMode');
+    if (btnExam) {
+      btnExam.addEventListener('click', () => {
+        if (answeredSoFar === 0) {
+          timerSeconds = 0;
+          examStates[currentExamId].timerSeconds = 0;
+          updateTimerDisplay();
+        }
+        setAppMode('exam');
+        switchView('question');
+      });
+    }
+  }
+
+  function goToCourseHub() {
+    stopTimer();
+    try {
       if (window.location.pathname.toLowerCase().includes('/simulado2')) {
         window.location.href = '../';
         return;
       }
-      switchExam('simulado1');
+      const url = new URL(window.location.href);
+      url.searchParams.delete('simulado');
+      url.searchParams.delete('exam');
+      window.history.replaceState({}, '', url.toString());
+    } catch (e) {}
+    switchView('hub');
+  }
+
+  window.goToCourseHub = goToCourseHub;
+
+  if (btnGoHub) {
+    btnGoHub.addEventListener('click', () => goToCourseHub());
+  }
+  if (brandHomeLink) {
+    brandHomeLink.addEventListener('click', () => goToCourseHub());
+  }
+
+  // Header Quick Exam Switcher
+  if (btnSelectSimulado1) {
+    btnSelectSimulado1.addEventListener('click', () => {
+      if (currentExamId === 'simulado1') return;
+      openExamLobby('simulado1');
     });
   }
 
   if (btnSelectSimulado2) {
     btnSelectSimulado2.addEventListener('click', () => {
-      switchExam('simulado2');
-    });
-  }
-
-  // Share Link Button
-  if (btnCopyShareLink) {
-    btnCopyShareLink.addEventListener('click', async () => {
-      let shareUrl = window.location.href;
-      try {
-        const u = new URL(window.location.href);
-        u.search = '';
-        u.hash = '';
-        let basePath = u.pathname.replace(/\/simulado2\/?(index\.html)?$/i, '/').replace(/\/index\.html$/i, '/');
-        if (!basePath.endsWith('/')) basePath += '/';
-        if (currentExamId === 'simulado2') {
-          u.pathname = basePath + 'simulado2/';
-        } else {
-          u.pathname = basePath;
-        }
-        shareUrl = u.toString();
-      } catch (e) {}
-
-      try {
-        await navigator.clipboard.writeText(shareUrl);
-      } catch (err) {
-        const tempInput = document.createElement('input');
-        tempInput.value = shareUrl;
-        document.body.appendChild(tempInput);
-        tempInput.select();
-        document.execCommand('copy');
-        document.body.removeChild(tempInput);
-      }
-
-      const iconEl = document.getElementById('copyLinkIcon');
-      const textEl = document.getElementById('copyLinkText');
-      if (iconEl) iconEl.textContent = '✅';
-      if (textEl) textEl.textContent = 'Link Copiado!';
-      setTimeout(() => {
-        if (iconEl) iconEl.textContent = '🔗';
-        if (textEl) textEl.textContent = 'Copiar Link';
-      }, 2200);
+      if (currentExamId === 'simulado2') return;
+      openExamLobby('simulado2');
     });
   }
 
   // ========================================================================
-  // TIMER FUNCTIONS
-  // ========================================================================
-  function updateTimerDisplay() {
-    if (!timerDisplay) return;
-    const mins = String(Math.floor(timerSeconds / 60)).padStart(2, '0');
-    const secs = String(timerSeconds % 60).padStart(2, '0');
-    timerDisplay.textContent = `${mins}:${secs}`;
-  }
-
-  function startTimer() {
-    if (timerInterval) clearInterval(timerInterval);
-    timerInterval = setInterval(() => {
-      timerSeconds++;
-      examStates[currentExamId].timerSeconds = timerSeconds;
-      updateTimerDisplay();
-    }, 1000);
-  }
-
-  // ========================================================================
-  // THEME (DARK / LIGHT) TOGGLE
+  // 6. TEMA (MODO DIA / MODO NOITE) & ALTERNADOR DE MODO
   // ========================================================================
   function applyTheme(theme) {
     document.documentElement.setAttribute('data-theme', theme);
@@ -341,32 +804,33 @@ document.addEventListener('DOMContentLoaded', () => {
     applyTheme(nextTheme);
   });
 
-  // ========================================================================
-  // MODE TOGGLE (STUDY VS EXAM)
-  // ========================================================================
   modeToggleBtn.addEventListener('click', () => {
-    if (appMode === 'study') {
-      appMode = 'exam';
-      modeToggleBtn.className = 'mode-badge mode-exam';
-      modeToggleBtn.innerHTML = '<span>📝</span> Modo Simulado (Exame)';
-    } else {
-      appMode = 'study';
-      modeToggleBtn.className = 'mode-badge mode-study';
-      modeToggleBtn.innerHTML = '<span>💡</span> Modo Estudo';
+    setAppMode(appMode === 'study' ? 'exam' : 'study');
+    if (currentView === 'question') {
+      renderCurrentQuestion();
     }
-    renderCurrentQuestion();
   });
 
   // ========================================================================
-  // VIEW SWITCHING
+  // 7. NAVEGAÇÃO ENTRE TELAS (SWITCH VIEW)
   // ========================================================================
   function switchView(viewName) {
     currentView = viewName;
-    questionView.style.display = viewName === 'question' ? 'block' : 'none';
-    reviewView.className = `review-screen-view ${viewName === 'review' ? 'active' : ''}`;
-    scoreReportView.className = `score-report-view ${viewName === 'score' ? 'active' : ''}`;
+    if (hubView) hubView.style.display = viewName === 'hub' ? 'block' : 'none';
+    if (lobbyView) lobbyView.style.display = viewName === 'lobby' ? 'block' : 'none';
+    if (questionView) questionView.style.display = viewName === 'question' ? 'block' : 'none';
+    if (reviewView) reviewView.className = `review-screen-view ${viewName === 'review' ? 'active' : ''}`;
+    if (scoreReportView) scoreReportView.className = `score-report-view ${viewName === 'score' ? 'active' : ''}`;
 
-    if (viewName === 'question') {
+    updateHeaderAndExamMetadata();
+
+    if (viewName === 'hub') {
+      progressStrip.style.display = 'none';
+      renderHubView();
+    } else if (viewName === 'lobby') {
+      progressStrip.style.display = 'none';
+      renderLobbyView();
+    } else if (viewName === 'question') {
       progressStrip.style.display = 'flex';
       renderCurrentQuestion();
     } else if (viewName === 'review') {
@@ -388,7 +852,7 @@ document.addEventListener('DOMContentLoaded', () => {
   });
 
   // ========================================================================
-  // QUESTION ANSWERING LOGIC
+  // 8. LÓGICA DE RESPOSTAS E RENDERIZAÇÃO DAS QUESTÕES
   // ========================================================================
   function isQuestionAnswered(q) {
     const ans = userAnswers[q.id];
@@ -435,21 +899,17 @@ document.addEventListener('DOMContentLoaded', () => {
     return false;
   }
 
-  // ========================================================================
-  // RENDER CURRENT QUESTION
-  // ========================================================================
   function renderCurrentQuestion() {
     const q = activeQuestions[currentQuestionIndex];
     if (!q) return;
     const isFlagged = flaggedQuestions.has(q.id);
-    const isSolutionShown = solutionRevealed[q.id] || false;
+    const isSolutionShown = (appMode === 'study') && (solutionRevealed[q.id] || false);
 
     // Update Progress Bar
     const progressPercent = ((currentQuestionIndex + 1) / totalQuestions) * 100;
     progressFill.style.width = `${progressPercent}%`;
     progressText.textContent = `Question Progress (${currentQuestionIndex + 1}/${totalQuestions})`;
 
-    // Header HTML
     let html = `
       <div class="question-header">
         <div class="question-title-area">
@@ -463,7 +923,6 @@ document.addEventListener('DOMContentLoaded', () => {
       </div>
     `;
 
-    // Alert banner: ONLY shown if this is a repeat attempt (attemptCount > 1) AND the student failed this question previously
     if (attemptCount > 1 && failedInPreviousAttempt.has(q.id)) {
       html += `
         <div class="user-attempt-banner original-wrong">
@@ -474,10 +933,8 @@ document.addEventListener('DOMContentLoaded', () => {
       `;
     }
 
-    // Question Body
     html += `<div class="question-body">${formatMarkdown(escapeHtml(q.question))}</div>`;
 
-    // Render by Question Type
     if (q.type === 'single') {
       html += renderSingleChoice(q, isSolutionShown);
     } else if (q.type === 'multi') {
@@ -490,7 +947,6 @@ document.addEventListener('DOMContentLoaded', () => {
       html += renderDragDropQuestion(q, isSolutionShown);
     }
 
-    // Action Buttons Bar
     html += `
       <div class="question-actions-bar">
         <div class="action-group-left">
@@ -515,18 +971,12 @@ document.addEventListener('DOMContentLoaded', () => {
       </div>
     `;
 
-    // Solution Panel (if revealed)
     html += renderSolutionPanel(q, isSolutionShown);
 
     questionCard.innerHTML = html;
-
-    // Attach Event Handlers for current question
     attachQuestionEvents(q);
   }
 
-  // ========================================================================
-  // RENDER QUESTION TYPES
-  // ========================================================================
   function renderSingleChoice(q, isSolutionShown) {
     const selectedAns = userAnswers[q.id] || null;
     let html = `<div class="options-list">`;
@@ -735,7 +1185,6 @@ document.addEventListener('DOMContentLoaded', () => {
   function renderDragDropQuestion(q, isSolutionShown) {
     const currentAns = userAnswers[q.id] || {};
 
-    // Left column: Values / Principles
     const valuesHtml = q.values.map(val => {
       const isChipSelected = selectedDragChipValue === val.id;
       return `
@@ -746,7 +1195,6 @@ document.addEventListener('DOMContentLoaded', () => {
       `;
     }).join('');
 
-    // Helper to build select dropdown for a target
     function buildTargetSelect(target, isCodeStyle) {
       const userVal = currentAns[target.id] || '';
       const correctVal = q.correct_answer[target.id];
@@ -825,9 +1273,6 @@ document.addEventListener('DOMContentLoaded', () => {
     `;
   }
 
-  // ========================================================================
-  // RENDER SOLUTION PANEL
-  // ========================================================================
   function renderSolutionPanel(q, isVisible) {
     const readingLinksHtml = (q.additional_reading || []).map(r => `
       <li>
@@ -877,11 +1322,7 @@ document.addEventListener('DOMContentLoaded', () => {
     `;
   }
 
-  // ========================================================================
-  // ATTACH QUESTION EVENTS
-  // ========================================================================
   function attachQuestionEvents(q) {
-    // Flag for review button
     const btnFlag = document.getElementById('btnFlagReview');
     btnFlag.addEventListener('click', () => {
       if (flaggedQuestions.has(q.id)) {
@@ -892,7 +1333,6 @@ document.addEventListener('DOMContentLoaded', () => {
       renderCurrentQuestion();
     });
 
-    // Single choice selection
     const optionItems = document.querySelectorAll('.option-item[data-opt-id]');
     optionItems.forEach(item => {
       item.addEventListener('click', () => {
@@ -902,7 +1342,6 @@ document.addEventListener('DOMContentLoaded', () => {
       });
     });
 
-    // Multi choice selection
     const multiItems = document.querySelectorAll('.option-item[data-multi-id]');
     multiItems.forEach(item => {
       item.addEventListener('click', () => {
@@ -923,7 +1362,6 @@ document.addEventListener('DOMContentLoaded', () => {
       });
     });
 
-    // Yes/No radio selection
     const radios = document.querySelectorAll('input[type="radio"][name^="statement_"]');
     radios.forEach(radio => {
       radio.addEventListener('change', (e) => {
@@ -937,7 +1375,6 @@ document.addEventListener('DOMContentLoaded', () => {
       });
     });
 
-    // Dropdown selection
     const inlineSelect = document.getElementById(`inlineSelect_${q.id}`);
     if (inlineSelect) {
       inlineSelect.addEventListener('change', (e) => {
@@ -946,7 +1383,6 @@ document.addEventListener('DOMContentLoaded', () => {
       });
     }
 
-    // Drag & Drop events (HTML5 Drag + Click-to-Assign + Direct Select)
     if (q.type === 'drag_drop') {
       const chips = document.querySelectorAll('.draggable-value-chip[data-chip-id]');
       chips.forEach(chip => {
@@ -988,7 +1424,6 @@ document.addEventListener('DOMContentLoaded', () => {
       targetSelects.forEach(sel => {
         const targetId = sel.getAttribute('data-target-select');
         sel.addEventListener('mousedown', (e) => {
-          // If a chip was clicked first, assign it directly on click!
           if (selectedDragChipValue) {
             e.preventDefault();
             if (!userAnswers[q.id]) userAnswers[q.id] = {};
@@ -1006,7 +1441,6 @@ document.addEventListener('DOMContentLoaded', () => {
       });
     }
 
-    // Toggle solution button
     const btnToggleSol = document.getElementById('btnToggleSolution');
     if (btnToggleSol) {
       btnToggleSol.addEventListener('click', () => {
@@ -1015,7 +1449,6 @@ document.addEventListener('DOMContentLoaded', () => {
       });
     }
 
-    // Reset answer button
     const btnReset = document.getElementById('btnResetAnswer');
     btnReset.addEventListener('click', () => {
       delete userAnswers[q.id];
@@ -1024,7 +1457,6 @@ document.addEventListener('DOMContentLoaded', () => {
       renderCurrentQuestion();
     });
 
-    // Prev / Next Question buttons
     const btnPrev = document.getElementById('btnPrevQuestion');
     btnPrev.addEventListener('click', () => {
       if (currentQuestionIndex > 0) {
@@ -1049,7 +1481,7 @@ document.addEventListener('DOMContentLoaded', () => {
   }
 
   // ========================================================================
-  // REVIEW SCREEN
+  // 9. TELA DE REVISÃO E RELATÓRIO DE PONTUAÇÃO (SCORE REPORT)
   // ========================================================================
   function renderReviewScreen(filter = 'all') {
     let answeredNum = 0;
@@ -1135,13 +1567,10 @@ document.addEventListener('DOMContentLoaded', () => {
 
   btnConfirmFinish.addEventListener('click', () => {
     finishModal.classList.remove('active');
-    if (timerInterval) clearInterval(timerInterval);
+    stopTimer();
     switchView('score');
   });
 
-  // ========================================================================
-  // SCORE REPORT SCREEN
-  // ========================================================================
   function renderScoreReport(reportFilter = 'all') {
     let correctCount = 0;
     let sec1Correct = 0;
@@ -1175,12 +1604,10 @@ document.addEventListener('DOMContentLoaded', () => {
       </div>
     `;
 
-    // Section 1: Conceitos de IA
     const sec1Pct = sec1Total > 0 ? Math.round((sec1Correct / sec1Total) * 100) : 0;
     sec1Percent.textContent = `${sec1Pct}% (${sec1Correct}/${sec1Total})`;
     sec1Fill.style.width = `${sec1Pct}%`;
 
-    // Section 2: Microsoft Foundry
     const sec2Pct = sec2Total > 0 ? Math.round((sec2Correct / sec2Total) * 100) : 0;
     sec2Percent.textContent = `${sec2Pct}% (${sec2Correct}/${sec2Total})`;
     sec2Fill.style.width = `${sec2Pct}%`;
@@ -1272,6 +1699,7 @@ document.addEventListener('DOMContentLoaded', () => {
 
   window.jumpToQuestion = function(idx) {
     currentQuestionIndex = idx;
+    setAppMode('study');
     solutionRevealed[activeQuestions[idx].id] = true;
     switchView('question');
   };
@@ -1295,7 +1723,7 @@ document.addEventListener('DOMContentLoaded', () => {
   }
 
   // ========================================================================
-  // RESTART EXAM (CUSTOM MODAL & DIRECT HANDLERS)
+  // 10. REINICIAR SIMULADO (RETORNA AO LOBBY COM RELÓGIO ZERADO E PARADO)
   // ========================================================================
   const restartModal = document.getElementById('restartModal');
   const btnCancelRestartModal = document.getElementById('btnCancelRestartModal');
@@ -1317,6 +1745,8 @@ document.addEventListener('DOMContentLoaded', () => {
 
   function executeRestart() {
     closeRestartModal();
+    stopTimer();
+
     failedInPreviousAttempt.clear();
     activeQuestions.forEach(q => {
       if (!isQuestionCorrect(q)) {
@@ -1337,7 +1767,6 @@ document.addEventListener('DOMContentLoaded', () => {
     timerSeconds = 0;
     examStates[currentExamId].timerSeconds = 0;
     updateTimerDisplay();
-    startTimer();
     currentQuestionIndex = 0;
     examStates[currentExamId].currentQuestionIndex = 0;
 
@@ -1346,7 +1775,8 @@ document.addEventListener('DOMContentLoaded', () => {
       else p.classList.remove('active');
     });
 
-    switchView('question');
+    // Return to Lobby so the clock stays stopped until the student picks Study or Exam Mode!
+    switchView('lobby');
     window.scrollTo({ top: 0, behavior: 'smooth' });
   }
 
@@ -1393,11 +1823,8 @@ document.addEventListener('DOMContentLoaded', () => {
   });
 
   // ========================================================================
-  // INITIALIZATION
+  // 11. INICIALIZAÇÃO
   // ========================================================================
   initTheme();
-  updateExamMetadataUI();
-  updateTimerDisplay();
-  startTimer();
-  renderCurrentQuestion();
+  switchView(currentView);
 });

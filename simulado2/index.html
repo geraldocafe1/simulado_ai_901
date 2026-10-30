@@ -12,10 +12,10 @@
 <body>
 
   <!-- ========================================================================
-       TOP MICROSOFT HEADER
+       TOP HEADER
        ======================================================================== -->
   <header class="ms-header">
-    <div class="ms-header-brand">
+    <div class="ms-header-brand" id="brandHomeLink" style="cursor: pointer;" title="Voltar para a Página Inicial de Cursos">
       <svg class="ms-logo-icon" viewBox="0 0 23 23">
         <rect x="1" y="1" width="10" height="10" fill="#f25022"/>
         <rect x="12" y="1" width="10" height="10" fill="#7fba00"/>
@@ -32,32 +32,41 @@
     </div>
 
     <div class="ms-header-actions" style="flex-wrap: wrap;">
-      <!-- Seletor de Simulado (Simulado 1: 50Q vs Simulado 2: 30Q ExamTopics) -->
-      <div class="exam-switcher-group" role="tablist" aria-label="Selecionar Simulado">
-        <button id="btnSelectSimulado1" class="exam-switch-btn" data-exam="simulado1" title="Simulado 1: Avaliação Oficial Microsoft Learn (50 Questões)">
-          <span>📘</span> Simulado 1 (50Q)
+      <!-- Botão Início / Cursos -->
+      <button id="btnGoHub" class="theme-toggle" title="Voltar ao Catálogo de Cursos e Simulados">
+        <span>🏠</span>
+        <span>Cursos & Simulados</span>
+      </button>
+
+      <!-- Controles exclusivos de quando um Simulado está aberto -->
+      <div id="examActiveControls" class="exam-header-controls" style="display: none;">
+        <!-- Seletor Rápido de Simulado -->
+        <div class="exam-switcher-group" role="tablist" aria-label="Selecionar Simulado">
+          <button id="btnSelectSimulado1" class="exam-switch-btn" data-exam="simulado1" title="Simulado 1: Avaliação Oficial Microsoft Learn (50 Questões)">
+            <span>📘</span> Simulado 1 (50Q)
+          </button>
+          <button id="btnSelectSimulado2" class="exam-switch-btn active" data-exam="simulado2" title="Simulado 2: Questões Extraídas ExamTopics AI-901 (30 Questões)">
+            <span>📙</span> Simulado 2 (30Q)
+          </button>
+        </div>
+
+        <!-- Mode Switcher -->
+        <button id="modeToggleBtn" class="mode-badge mode-study" title="Alternar entre Modo Estudo (sem relógio) e Modo Simulado Exame (cronometrado)">
+          <span id="modeIcon">💡</span> Modo Estudo
         </button>
-        <button id="btnSelectSimulado2" class="exam-switch-btn active" data-exam="simulado2" title="Simulado 2: Questões Extraídas ExamTopics AI-901 (30 Questões)">
-          <span>📙</span> Simulado 2 (30Q)
-        </button>
+
+        <!-- Timer (VISÍVEL SOMENTE NO MODO SIMULADO EXAME) -->
+        <div class="timer-box" id="timerBox" style="display: none;" title="Tempo corrido no Modo Simulado (Exame)">
+          <span>⏱️</span>
+          <span id="timerDisplay">00:00</span>
+        </div>
       </div>
 
       <!-- Botão Compartilhar Link Direto -->
-      <button id="btnCopyShareLink" class="btn-copy-link" title="Copiar link direto deste simulado para compartilhar">
+      <button id="btnCopyShareLink" class="btn-copy-link" title="Copiar link direto para compartilhar com os alunos">
         <span id="copyLinkIcon">🔗</span>
         <span id="copyLinkText">Copiar Link</span>
       </button>
-
-      <!-- Mode Switcher -->
-      <button id="modeToggleBtn" class="mode-badge mode-study" title="Alternar entre modo estudo com feedback imediato e simulado cronometrado">
-        <span id="modeIcon">💡</span> Modo Estudo
-      </button>
-
-      <!-- Timer -->
-      <div class="timer-box" id="timerBox">
-        <span>⏱️</span>
-        <span id="timerDisplay">00:00</span>
-      </div>
 
       <!-- Alternador Modo Dia / Noite (Dark Mode) -->
       <button id="themeToggleBtn" class="theme-toggle" title="Alternar entre Modo Dia (Claro) e Modo Noite (Escuro)">
@@ -74,9 +83,9 @@
   </header>
 
   <!-- ========================================================================
-       PROGRESS STRIP
+       PROGRESS STRIP (Exibida apenas durante a resolução das questões)
        ======================================================================== -->
-  <div class="ms-progress-strip" id="progressStrip">
+  <div class="ms-progress-strip" id="progressStrip" style="display: none;">
     <div class="progress-info">
       <span class="progress-label">PROGRESS</span>
       <div class="progress-track">
@@ -97,11 +106,35 @@
        ======================================================================== -->
   <main class="ms-main-content">
 
+    <!-- 0. COURSE & SIMULADO HUB VIEW (PÁGINA INICIAL POR CURSO) -->
+    <div id="hubView" class="hub-view" style="display: none;">
+      <section class="hub-hero">
+        <div class="hub-hero-badge">🎓 PLATAFORMA INTERATIVA DE CERTIFICAÇÕES</div>
+        <h1 class="hub-hero-title">Central de Simulados por Curso</h1>
+        <p class="hub-hero-desc">
+          Selecione a trilha de certificação abaixo, escolha o simulado desejado e treine no <strong>Modo Estudo</strong> (com gabarito comentado imediato e sem relógio) ou no <strong>Modo Simulado de Exame</strong> (com cronômetro oficial e ranking ao vivo da turma).
+        </p>
+
+        <div class="hub-provider-tabs">
+          <button class="provider-tab active" data-provider="all">🌐 Todos os Cursos</button>
+          <button class="provider-tab" data-provider="microsoft">🟦 Microsoft Azure</button>
+          <button class="provider-tab" data-provider="aws">🟧 Amazon AWS</button>
+          <button class="provider-tab" data-provider="google">🟨 Google Cloud</button>
+        </div>
+      </section>
+
+      <section id="coursesGridContainer" class="courses-grid"></section>
+      <section id="courseQuizzesSection" class="course-quizzes-section"></section>
+    </div>
+
+    <!-- 0.5 PRE-START LOBBY VIEW (TELA ANTES DE INICIAR O SIMULADO / RELÓGIO) -->
+    <div id="lobbyView" class="lobby-view" style="display: none;">
+      <div class="lobby-card" id="lobbyCard"></div>
+    </div>
+
     <!-- 1. EXAM QUESTION VIEW -->
-    <div id="questionView" class="active">
-      <div class="question-card" id="questionCard">
-        <!-- Rendered dynamically by app.js -->
-      </div>
+    <div id="questionView" style="display: none;">
+      <div class="question-card" id="questionCard"></div>
     </div>
 
     <!-- 2. REVIEW SCREEN VIEW -->
@@ -139,9 +172,7 @@
               <th style="width: 100px; text-align: center;">Revisão</th>
             </tr>
           </thead>
-          <tbody id="reviewTableBody">
-            <!-- Rendered by app.js -->
-          </tbody>
+          <tbody id="reviewTableBody"></tbody>
         </table>
       </div>
     </div>
@@ -152,9 +183,7 @@
         <h1 class="score-title">Score Report</h1>
         <div class="score-subtitle" id="scoreReportSubtitle">Simulado 2 (ExamTopics) for Exam AI-901: Microsoft Azure AI Fundamentals</div>
 
-        <div id="scoreBadgeContainer">
-          <!-- Pass / Fail Badge -->
-        </div>
+        <div id="scoreBadgeContainer"></div>
 
         <div class="score-circle-container">
           <div class="score-metric-box">
@@ -171,14 +200,12 @@
           </div>
         </div>
 
-        <!-- Meta e Dica Oficial -->
         <div class="score-comparison-banner">
           <span>🎯</span>
           <span><strong>Nota de Aprovação Oficial da Microsoft:</strong> 80% (<span id="targetCorrectText">24 acertos de 30</span>). Registre seu nome no ranking abaixo para disputar o topo da turma!</span>
         </div>
       </div>
 
-      <!-- Performance by section -->
       <div class="section-performance-card">
         <h3 style="margin-bottom: 1rem; font-size: 1.15rem;">Desempenho por Seção do Exame</h3>
         
@@ -203,9 +230,6 @@
         </div>
       </div>
 
-      <!-- ====================================================================
-           LEADERBOARD / RANKING DA TURMA (COMPETIÇÃO AO VIVO)
-           ==================================================================== -->
       <div class="leaderboard-card">
         <div class="leaderboard-card-header">
           <div style="display: flex; align-items: center; gap: 12px;">
@@ -222,7 +246,6 @@
           </button>
         </div>
 
-        <!-- Formulário de Registro do Aluno -->
         <div id="leaderboardSubmitSection" class="leaderboard-submit-box">
           <p style="font-size: 0.95rem; font-weight: 700; margin-bottom: 8px;">
             🎓 Quer registrar seu nome no ranking da turma?
@@ -240,11 +263,8 @@
         </div>
 
         <div id="leaderboardUserRankResult" style="display: none;"></div>
-
-        <!-- Podium Top 3 -->
         <div id="leaderboardPodiumContainer" class="podium-container"></div>
 
-        <!-- Tabela do Ranking -->
         <div class="leaderboard-table-wrapper">
           <table class="leaderboard-table">
             <thead>
@@ -262,7 +282,6 @@
         </div>
       </div>
 
-      <!-- Detailed Review with Filter -->
       <div class="question-card">
         <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 1.5rem; flex-wrap: wrap; gap: 10px;">
           <h3>Gabarito Completo e Comentários Questão por Questão</h3>
@@ -273,13 +292,14 @@
           </div>
         </div>
 
-        <div id="scoreReportQuestionsList">
-          <!-- Rendered by app.js -->
-        </div>
+        <div id="scoreReportQuestionsList"></div>
 
-        <div style="margin-top: 2rem; display: flex; justify-content: center; gap: 16px;">
+        <div style="margin-top: 2rem; display: flex; justify-content: center; gap: 16px; flex-wrap: wrap;">
           <button id="btnRestartExam" onclick="window.restartExamDirect()" class="btn-ms btn-ms-primary">
             <span>🔄</span> Refazer Simulado
+          </button>
+          <button onclick="window.goToCourseHub()" class="btn-ms btn-ms-secondary">
+            <span>🏠</span> Outros Simulados / Cursos
           </button>
           <button onclick="window.print()" class="btn-ms btn-ms-secondary">
             <span>🖨️</span> Imprimir / Salvar PDF
@@ -290,9 +310,6 @@
 
   </main>
 
-  <!-- ========================================================================
-       MODAL DIALOG (ARE YOU SURE TO FINISH)
-       ======================================================================== -->
   <div class="modal-overlay" id="finishModal">
     <div class="modal-box">
       <h3 class="modal-title">Tem certeza que deseja finalizar?</h3>
@@ -306,14 +323,11 @@
     </div>
   </div>
 
-  <!-- ========================================================================
-       MODAL DIALOG (REINICIAR SIMULADO)
-       ======================================================================== -->
   <div class="modal-overlay" id="restartModal">
     <div class="modal-box">
       <h3 class="modal-title">Reiniciar o Simulado?</h3>
       <p class="modal-text">
-        Tem certeza que deseja reiniciar o simulado? Suas respostas atuais serão limpas e o cronômetro será zerado para você começar uma nova tentativa do zero.
+        Tem certeza que deseja reiniciar o simulado? Suas respostas atuais serão limpas e você voltará à tela de escolha de modo para começar uma nova tentativa do zero.
       </p>
       <div class="modal-actions">
         <button id="btnCancelRestartModal" class="btn-ms btn-ms-secondary">Cancelar</button>
@@ -322,9 +336,6 @@
     </div>
   </div>
 
-  <!-- ========================================================================
-       MODAL DIALOG (RANKING GERAL DA TURMA)
-       ======================================================================== -->
   <div class="modal-overlay" id="leaderboardModal">
     <div class="modal-box leaderboard-modal-box">
       <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 1rem; border-bottom: 1px solid var(--border-color); padding-bottom: 0.75rem;">
@@ -338,7 +349,6 @@
         <button id="btnCloseLeaderboardModal" class="btn-ms btn-ms-secondary" style="padding: 4px 10px; font-size: 1rem;">✕</button>
       </div>
 
-      <!-- Podium Top 3 inside Modal -->
       <div id="modalPodiumContainer" class="podium-container"></div>
 
       <div class="leaderboard-table-wrapper" style="max-height: 380px; overflow-y: auto;">
