@@ -1,6 +1,6 @@
-# 🎓 Simulado Oficial Microsoft AI-901: Microsoft Azure AI Fundamentals
+# 🎓 Central de Simulados Cloud & IA (Microsoft, AWS e Google Cloud)
 
-> **Simulado Interativo em Português** baseado na avaliação oficial de prática da Microsoft para o novo exame **AI-901: Microsoft Azure AI Fundamentals** (com ênfase em **Microsoft Foundry**, modelos multimodais, agentes de IA e Content Understanding).
+> **Portal Interativo de Simulados por Curso em Português** com avaliações práticas para certificações **Microsoft Azure (AI-901, AZ-900, DP-900)**, **Amazon AWS (CLF-C02)** e **Google Cloud (GCP-ACE)**.
 
 ---
 
@@ -8,16 +8,17 @@
 
 Este repositório foi projetado como uma **Single Page Application (SPA)** estática (HTML, CSS e JavaScript puros), o que significa que pode ser publicado **gratuitamente** no GitHub Pages em menos de 1 minuto:
 
-1. Acesse o repositório no GitHub: [https://github.com/geraldocafe1/simulado_ai_901](https://github.com/geraldocafe1/simulado_ai_901).
+1. Acesse o repositório no GitHub: [https://github.com/geraldocafe1/Simulados](https://github.com/geraldocafe1/Simulados).
 2. Clique na aba **Settings** (Configurações) no topo.
 3. No menu lateral esquerdo, clique em **Pages**.
 4. Em **Build and deployment** > **Source**, selecione **Deploy from a branch**.
 5. Em **Branch**, selecione `main` e a pasta `/(root)`, depois clique em **Save**.
 6. Aguarde cerca de 1 a 2 minutos. Os links de acesso dos alunos estarão prontos em:
-   - 👉 **Simulado 1 (50 Questões Oficiais Microsoft):** **`https://geraldocafe1.github.io/simulado_ai_901/`**
-   - 👉 **Simulado 2 (30 Questões ExamTopics AI-901):** **`https://geraldocafe1.github.io/simulado_ai_901/simulado2/`** (ou **`https://geraldocafe1.github.io/simulado_ai_901/?simulado=2`**)
+   - 👉 **Central de Cursos e Simulados (Página Inicial):** **`https://geraldocafe1.github.io/Simulados/`**
+   - 👉 **AI-901 Simulado 1 (50 Questões Oficiais Microsoft):** **`https://geraldocafe1.github.io/Simulados/?simulado=1`**
+   - 👉 **AI-901 Simulado 2 (30 Questões ExamTopics):** **`https://geraldocafe1.github.io/Simulados/simulado2/`**
 
-Compartilhe esses links com sua turma para que realizem qualquer um dos simulados em computador, tablet ou celular sem necessidade de instalação! Também é possível alternar entre o **Simulado 1 (50Q)** e o **Simulado 2 (30Q)** diretamente no cabeçalho da aplicação.
+Compartilhe esses links com sua turma para que realizem qualquer um dos simulados em computador, tablet ou celular sem necessidade de instalação!
 
 ---
 
