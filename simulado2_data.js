@@ -1,0 +1,1225 @@
+// Simulado 2 Microsoft Exam AI-901: ExamTopics (30 questões traduzidas e comentadas em PT-BR)
+const SIMULADO_2_QUESTIONS = [
+  {
+    "id": 1,
+    "type": "single",
+    "category": "Implementar soluções de IA com o Microsoft Foundry",
+    "category_en": "Implement AI solutions with Microsoft Foundry",
+    "objective": "2.2 Implementar soluções de IA para texto e fala usando o Foundry",
+    "what_it_tests": "Identificar a classe do SDK de Fala do Azure (Azure Speech SDK) responsável por configurar a conexão (chave, região, endpoint e idioma) com o serviço de Fala.",
+    "question": "Você está usando o SDK de Fala do Azure (Azure Speech SDK) para desenvolver um aplicativo Python que oferece suporte a conversas faladas em tempo real.\n\nQual classe do Azure Speech você deve usar para configurar a conexão com o serviço de Fala do Azure?",
+    "options": [
+      {
+        "id": "A",
+        "text": "AudioOutputConfig (Configuração de saída de áudio)"
+      },
+      {
+        "id": "B",
+        "text": "SpeechSynthesizer (Sintetizador de fala)"
+      },
+      {
+        "id": "C",
+        "text": "AudioConfig (Configuração de áudio)"
+      },
+      {
+        "id": "D",
+        "text": "SpeechConfig (Configuração de fala)"
+      }
+    ],
+    "correct_answer": "D",
+    "official_rationale": "A classe SpeechConfig armazena as informações necessárias para conectar seu aplicativo ao serviço Azure Speech, incluindo a chave de assinatura (subscription key), a região (region) ou o endpoint do recurso.",
+    "explanation_why_correct": "A classe **`SpeechConfig`** (Configuração de Fala) do pacote `azure.cognitiveservices.speech` é usada para definir os parâmetros de autenticação e conexão com o recurso do Azure Speech (como `subscription`, `region`, `endpoint`, idioma de reconhecimento e voz de síntese).",
+    "explanation_why_incorrect": "• **A (AudioOutputConfig): Incorreta.** Define apenas para onde o áudio sintetizado será enviado (alto-falante padrão, arquivo `.wav` ou fluxo de áudio em memória), não a conexão com o serviço na nuvem.\n• **B (SpeechSynthesizer): Incorreta.** É o cliente que executa a conversão de texto em fala (TTS), mas ele depende de uma instância prévia de `SpeechConfig` para se conectar ao Azure.\n• **C (AudioConfig): Incorreta.** Especifica apenas a fonte de entrada ou saída de áudio (como microfone padrão ou arquivo de áudio local), sem conter credenciais ou região do serviço.",
+    "additional_reading": [
+      {
+        "title": "Início Rápido: Reconhecer fala e converter em texto com o SDK de Fala do Azure para Python",
+        "url": "https://learn.microsoft.com/azure/ai-services/speech-service/get-started-speech-to-text"
+      }
+    ]
+  },
+  {
+    "id": 2,
+    "type": "dropdown",
+    "category": "Implementar soluções de IA com o Microsoft Foundry",
+    "category_en": "Implement AI solutions with Microsoft Foundry",
+    "objective": "2.3 Implementar soluções de IA com recursos de visão computacional e geração de imagens usando o Foundry",
+    "what_it_tests": "Compreender como enviar imagens para modelos multimodais habilitados para visão usando a API de Respostas do OpenAI (OpenAI Responses API).",
+    "question": "PONTO DE INTERESSE (HOTSPOT)\n\nSelecione a resposta que completa corretamente a frase na Área de Resposta.",
+    "answer_area": {
+      "type": "sentence",
+      "prefix": "Ao usar a API de Respostas do OpenAI (OpenAI Responses API) e um modelo habilitado para visão, você pode incluir uma imagem em uma solicitação fornecendo a imagem como ",
+      "suffix": "."
+    },
+    "options": [
+      {
+        "id": "A",
+        "text": "dados de imagem codificados em Base64 (a base64-encoded image data)"
+      },
+      {
+        "id": "B",
+        "text": "um anexo de arquivo CSV (a CSV file attachment)"
+      },
+      {
+        "id": "C",
+        "text": "um fluxo de vídeo MP4 (an MP4 video stream)"
+      },
+      {
+        "id": "D",
+        "text": "um token de assinatura de acesso compartilhado - SAS (a shared access signature token)"
+      }
+    ],
+    "correct_answer": "A",
+    "official_rationale": "Ao enviar imagens para um modelo habilitado para visão usando a API Responses do OpenAI, a imagem pode ser fornecida por meio de uma URL totalmente qualificada ou como dados de imagem codificados em Base64 (Data URL).",
+    "explanation_why_correct": "Na **API de Respostas do OpenAI (`Responses API`)** com modelos multimodais (como GPT-4o ou GPT-4.1), imagens locais são incluídas na carga JSON da requisição convertendo seus bytes em **dados de imagem codificados em Base64** (no formato Data URI, por exemplo `data:image/png;base64,...`) ou informando uma URL direta da imagem.",
+    "explanation_why_incorrect": "• **B (anexo CSV): Incorreta.** Arquivos CSV contêm dados tabulares separados por vírgula, não informações visuais de imagem.\n• **C (fluxo de vídeo MP4): Incorreta.** A inclusão de uma imagem requer um formato de imagem estática (PNG, JPEG, WEBP, GIF) ou Base64 correspondente, e não um stream de vídeo MP4.\n• **D (token SAS): Incorreta.** Um token SAS é apenas uma string de permissão temporária do Azure Storage, não o conteúdo ou endereço completo de uma imagem.",
+    "additional_reading": [
+      {
+        "title": "Usar modelos habilitados para visão no Azure OpenAI / Microsoft Foundry",
+        "url": "https://learn.microsoft.com/azure/ai-services/openai/how-to/gpt-with-vision"
+      }
+    ]
+  },
+  {
+    "id": 3,
+    "type": "single",
+    "category": "Implementar soluções de IA com o Microsoft Foundry",
+    "category_en": "Implement AI solutions with Microsoft Foundry",
+    "objective": "2.1 Implementar aplicativos e agentes de IA generativa usando o Foundry",
+    "what_it_tests": "Configurar instruções do sistema (system instructions) para definir a persona, função e comportamento de um agente de IA no Microsoft Foundry.",
+    "question": "Você precisa criar um agente de IA no Microsoft Foundry que siga uma função (papel) e um comportamento específicos ao interagir com os usuários.\n\nO que você deve configurar?",
+    "options": [
+      {
+        "id": "A",
+        "text": "Instruções do sistema (System instructions)"
+      },
+      {
+        "id": "B",
+        "text": "Temperatura (Temperature)"
+      },
+      {
+        "id": "C",
+        "text": "Tokens por minuto (TPM)"
+      },
+      {
+        "id": "D",
+        "text": "Número máximo de tokens de conclusão (Max completion tokens)"
+      }
+    ],
+    "correct_answer": "A",
+    "official_rationale": "As instruções do sistema (system instructions / system prompt) definem o papel, a personalidade, o tom e as regras de comportamento que um agente de IA no Microsoft Foundry deve seguir ao responder aos usuários.",
+    "explanation_why_correct": "As **Instruções do sistema (System instructions)** orientam o agente de IA sobre quem ele é (sua função/papel), como deve se comportar, qual tom adotar e quais restrições respeitar durante toda a conversa com o usuário.",
+    "explanation_why_incorrect": "• **B (Temperatura): Incorreta.** A temperatura apenas ajusta o grau de aleatoriedade/criatividade estatística na escolha dos tokens, sem definir uma função ou regra de comportamento.\n• **C (Tokens por minuto - TPM): Incorreta.** O TPM define o limite de taxa de transferência (cota de capacidade) da implantação do modelo.\n• **D (Número máximo de tokens de conclusão): Incorreta.** Apenas limita o comprimento máximo de cada resposta gerada.",
+    "additional_reading": [
+      {
+        "title": "O que é o Serviço de Agente do Microsoft Foundry (Foundry Agent Service)?",
+        "url": "https://learn.microsoft.com/azure/ai-studio/concepts/agents"
+      }
+    ]
+  },
+  {
+    "id": 4,
+    "type": "yes_no",
+    "category": "Implementar soluções de IA com o Microsoft Foundry",
+    "category_en": "Implement AI solutions with Microsoft Foundry",
+    "objective": "2.1 Implementar aplicativos e agentes de IA generativa usando o Foundry",
+    "what_it_tests": "Avaliar o papel e as limitações de um prompt do sistema (system prompt) em modelos de IA generativa.",
+    "question": "PONTO DE INTERESSE (HOTSPOT)\n\nPara cada uma das afirmações a seguir sobre prompts do sistema (system prompts), selecione Sim se a afirmação for verdadeira. Caso contrário, selecione Não.\nOBSERVAÇÃO: Cada seleção correta vale um ponto.",
+    "statements": [
+      {
+        "id": 1,
+        "text": "Os prompts do sistema podem ser usados para autorizar usuários. (System prompts can be used to authorize users.)"
+      },
+      {
+        "id": 2,
+        "text": "Um prompt do sistema é usado para reduzir os tokens por minuto (TPM). (A system prompt is used to reduce tokens per minute (TPM).)"
+      },
+      {
+        "id": 3,
+        "text": "Um prompt do sistema orienta o comportamento de um modelo de IA generativa. (A system prompt guides the behavior of a generative AI model.)"
+      }
+    ],
+    "correct_answer": {
+      "1": "No",
+      "2": "No",
+      "3": "Yes"
+    },
+    "official_rationale": "Um prompt do sistema fornece instruções iniciais e contexto que orientam o comportamento e o estilo de resposta do modelo de IA generativa. Ele não realiza controle de acesso/autorização de segurança nem reduz o limite de TPM.",
+    "explanation_why_correct": "• **Afirmação 1 (Não):** Prompts do sistema são instruções em linguagem natural enviadas ao modelo e estão sujeitos a tentativas de *prompt injection*; a autorização de usuários deve ser feita pela camada de segurança e identidade do aplicativo (como Microsoft Entra ID / RBAC).\n• **Afirmação 2 (Não):** O TPM (Tokens por Minuto) é uma configuração de capacidade da implantação. Além disso, adicionar um prompt do sistema consome tokens de entrada em cada requisição, não reduzindo o uso de TPM.\n• **Afirmação 3 (Sim):** A função primordial do prompt do sistema é definir diretrizes, persona, formato de saída e limites de comportamento para o modelo de IA generativa.",
+    "explanation_why_incorrect": "Lembre-se de não confundir instruções de orientação comportamental do modelo (*system prompt*) com controles de infraestrutura (TPM) ou segurança de autenticação/autorização.",
+    "additional_reading": [
+      {
+        "title": "Engenharia de prompt e mensagens do sistema no Azure OpenAI",
+        "url": "https://learn.microsoft.com/azure/ai-services/openai/concepts/system-message"
+      }
+    ]
+  },
+  {
+    "id": 5,
+    "type": "single",
+    "category": "Implementar soluções de IA com o Microsoft Foundry",
+    "category_en": "Implement AI solutions with Microsoft Foundry",
+    "objective": "2.4 Implementar soluções de IA que analisam conteúdo usando o Foundry",
+    "what_it_tests": "Selecionar o serviço adequado para extrair campos estruturados e aninhados de faturas com base em um esquema definido.",
+    "question": "Você está desenvolvendo um aplicativo web que processa faturas (invoices) para calcular despesas.\n\nVocê precisa extrair campos estruturados, incluindo valores aninhados, das faturas usando um esquema definido.\n\nO que você deve usar?",
+    "options": [
+      {
+        "id": "A",
+        "text": "Um pipeline de processamento de documentos baseado exclusivamente em reconhecimento óptico de caracteres (OCR)"
+      },
+      {
+        "id": "B",
+        "text": "Um fluxo de trabalho de transcrição no Azure Speech no Foundry Tools"
+      },
+      {
+        "id": "C",
+        "text": "Um analisador no Azure Content Understanding no Foundry Tools"
+      },
+      {
+        "id": "D",
+        "text": "Um serviço de pesquisa do Azure AI Search"
+      }
+    ],
+    "correct_answer": "C",
+    "official_rationale": "Um analisador (analyzer) no Azure Content Understanding permite definir um esquema personalizado para extrair campos estruturados e valores aninhados (como tabelas de itens) a partir de faturas e documentos.",
+    "explanation_why_correct": "Um **analisador no Azure Content Understanding no Foundry Tools** permite configurar um esquema de campos (*field schema*) para extrair dados estruturados e objetos/valores aninhados (como itens de linha, impostos, totais e fornecedor) diretamente de documentos como faturas.",
+    "explanation_why_incorrect": "• **A: Incorreta.** Um pipeline baseado *exclusivamente* em OCR extrai apenas o texto bruto e sua posição visual na página, sem mapear automaticamente os dados para um esquema estruturado com campos aninhados.\n• **B: Incorreta.** O Azure Speech lida com áudio e fala, não com documentos de faturas.\n• **D: Incorreta.** O Azure AI Search é um mecanismo de indexação e recuperação de busca, e não um extrator de esquemas de documentos por si só.",
+    "additional_reading": [
+      {
+        "title": "O que é o Azure AI Content Understanding?",
+        "url": "https://learn.microsoft.com/azure/ai-services/content-understanding/overview"
+      }
+    ]
+  },
+  {
+    "id": 6,
+    "type": "yes_no",
+    "category": "Implementar soluções de IA com o Microsoft Foundry",
+    "category_en": "Implement AI solutions with Microsoft Foundry",
+    "objective": "2.2 Implementar soluções de IA para texto e fala usando o Foundry",
+    "what_it_tests": "Compreender os recursos da API Voice Live no Azure Speech (Foundry Tools) para experiências conversacionais em tempo real.",
+    "question": "PONTO DE INTERESSE (HOTSPOT)\n\nPara cada uma das afirmações a seguir sobre o recurso Voice Live, selecione Sim se a afirmação for verdadeira. Caso contrário, selecione Não.\nOBSERVAÇÃO: Cada seleção correta vale um ponto.",
+    "statements": [
+      {
+        "id": 1,
+        "text": "O Voice Live retorna apenas texto transcrito. (Voice Live returns only transcribed text.)"
+      },
+      {
+        "id": 2,
+        "text": "O Voice Live exige que você implemente separadamente os serviços de conversão de fala em texto e de texto em fala. (Voice Live requires you to separately implement speech to text and text to speech services.)"
+      },
+      {
+        "id": 3,
+        "text": "O Voice Live combina conversão de fala em texto, raciocínio e conversão de texto em fala em uma única experiência conversacional. (Voice Live combines speech to text, reasoning, and text to speech into a single conversational experience.)"
+      }
+    ],
+    "correct_answer": {
+      "1": "No",
+      "2": "No",
+      "3": "Yes"
+    },
+    "official_rationale": "A API Voice Live integra reconhecimento de fala (speech-to-text), raciocínio de IA generativa e síntese de fala (text-to-speech) em uma única conexão unificada, retornando áudio falado em tempo real além de texto.",
+    "explanation_why_correct": "• **Afirmação 1 (Não):** O Voice Live gera respostas em áudio sintetizado em tempo real (além de eventos de transcrição), permitindo diálogos falados completos.\n• **Afirmação 2 (Não):** O principal benefício do Voice Live é eliminar a necessidade de orquestrar e conectar manualmente pipelines separados de STT, LLM e TTS.\n• **Afirmação 3 (Sim):** O Voice Live unifica conversão de fala em texto, raciocínio com modelos generativos e conversão de texto em fala em um único fluxo conversacional de baixa latência.",
+    "explanation_why_incorrect": "O Voice Live foi criado justamente para substituir a arquitetura fragmentada em que o desenvolvedor precisava gerenciar três serviços separados.",
+    "additional_reading": [
+      {
+        "title": "Visão geral da API Voice Live no Azure AI Speech / Foundry",
+        "url": "https://learn.microsoft.com/azure/ai-services/speech-service/"
+      }
+    ]
+  },
+  {
+    "id": 7,
+    "type": "dropdown",
+    "category": "Implementar soluções de IA com o Microsoft Foundry",
+    "category_en": "Implement AI solutions with Microsoft Foundry",
+    "objective": "2.2 Implementar soluções de IA para texto e fala usando o Foundry",
+    "what_it_tests": "Completar o código Python do SDK do Azure Speech para realizar o reconhecimento de um comando de voz falado.",
+    "question": "PONTO DE INTERESSE (HOTSPOT)\n\nVocê está desenvolvendo um aplicativo de voz que ouve comandos falados e os converte em texto usando o Azure Speech no Foundry Tools.\n\nComo você deve completar o código Python? Para responder, selecione a opção apropriada na Área de Resposta.",
+    "answer_area": {
+      "type": "code",
+      "prefix": "import azure.cognitiveservices.speech as speechsdk\n...\nspeech_config = speechsdk.SpeechConfig(subscription=key, region=region)\nrecognizer = speechsdk.SpeechRecognizer(speech_config=speech_config)\n",
+      "suffix": "\n..."
+    },
+    "options": [
+      {
+        "id": "A",
+        "text": "recognizer.recognize_once()"
+      },
+      {
+        "id": "B",
+        "text": "recognizer.speak_text_async(\"Ready\")"
+      },
+      {
+        "id": "C",
+        "text": "recognizer.start_continuous_recognition()"
+      },
+      {
+        "id": "D",
+        "text": "recognizer.start_keyword_recognition()"
+      }
+    ],
+    "correct_answer": "A",
+    "official_rationale": "O método recognize_once() no objeto SpeechRecognizer escuta uma única locução (como um comando curto de voz) e retorna o texto reconhecido assim que uma pausa final é detectada.",
+    "explanation_why_correct": "Para aplicativos que escutam comandos falados pontuais e os convertem diretamente em texto, o método **`recognizer.recognize_once()`** inicia a captura de áudio e retorna o resultado da transcrição da primeira frase ou comando detectado.",
+    "explanation_why_incorrect": "• **B (`speak_text_async`): Incorreta.** Esse método pertence à classe `SpeechSynthesizer` (texto para fala), e não ao `SpeechRecognizer`.\n• **C (`start_continuous_recognition`): Incorreta.** O reconhecimento contínuo exige a assinatura prévia de eventos (`recognized`, `recognizing`, `canceled`) para processar transcrições longas assincronamente.\n• **D (`start_keyword_recognition`): Incorreta.** Exige um parâmetro `KeywordRecognitionModel` para detectar uma palavra de ativação (*wake word*) específica.",
+    "additional_reading": [
+      {
+        "title": "Início Rápido: Converter fala em texto usando o SDK de Fala do Azure em Python",
+        "url": "https://learn.microsoft.com/azure/ai-services/speech-service/get-started-speech-to-text"
+      }
+    ]
+  },
+  {
+    "id": 8,
+    "type": "multi",
+    "category": "Implementar soluções de IA com o Microsoft Foundry",
+    "category_en": "Implement AI solutions with Microsoft Foundry",
+    "objective": "2.1 Implementar aplicativos e agentes de IA generativa usando o Foundry",
+    "what_it_tests": "Identificar os dois propósitos principais das instruções do sistema (system instructions) ao orientar um modelo de IA generativa.",
+    "question": "Quais são dois propósitos das instruções (system instructions) ao orientar um modelo de IA generativa? Cada resposta correta apresenta parte da solução.\nOBSERVAÇÃO: Cada seleção correta vale um ponto.",
+    "options": [
+      {
+        "id": "A",
+        "text": "Definir o papel (função) e o comportamento do agente."
+      },
+      {
+        "id": "B",
+        "text": "Selecionar qual modelo usar."
+      },
+      {
+        "id": "C",
+        "text": "Definir a região do Azure onde ocorre a inferência."
+      },
+      {
+        "id": "D",
+        "text": "Definir a alocação de tokens por minuto (TPM) para o modelo."
+      },
+      {
+        "id": "E",
+        "text": "Definir restrições às respostas do modelo."
+      }
+    ],
+    "correct_answer": [
+      "A",
+      "E"
+    ],
+    "official_rationale": "As instruções do sistema (system instructions) orientam um modelo ou agente de IA generativa estabelecendo seu papel/comportamento (persona, tom) e impondo restrições claras às suas respostas (formato, limites de escopo e regras de segurança).",
+    "explanation_why_correct": "• **A (Correta):** As instruções definem qual papel o agente desempenha (ex.: *\"Você é um assistente técnico de suporte bancário\"*) e como deve se comportar.\n• **E (Correta):** As instruções estabelecem restrições sobre o que o modelo pode ou não responder, o formato de saída esperado e o estilo de comunicação.",
+    "explanation_why_incorrect": "• **B: Incorreta.** A seleção do modelo é feita na criação da implantação ou no parâmetro `model` da chamada de API.\n• **C: Incorreta.** A região onde ocorre a inferência é definida quando o recurso do Azure / Microsoft Foundry é provisionado.\n• **D: Incorreta.** A cota de TPM é configurada nas propriedades da implantação do modelo no portal, não nas instruções de texto.",
+    "additional_reading": [
+      {
+        "title": "Conceitos de engenharia de prompt e instruções de sistema",
+        "url": "https://learn.microsoft.com/azure/ai-services/openai/concepts/system-message"
+      }
+    ]
+  },
+  {
+    "id": 9,
+    "type": "dropdown",
+    "category": "Implementar soluções de IA com o Microsoft Foundry",
+    "category_en": "Implement AI solutions with Microsoft Foundry",
+    "objective": "2.2 Implementar soluções de IA para texto e fala usando o Foundry",
+    "what_it_tests": "Configurar o AudioOutputConfig no SDK do Azure Speech para salvar o áudio sintetizado em um arquivo WAV.",
+    "question": "PONTO DE INTERESSE (HOTSPOT)\n\nVocê está desenvolvendo um aplicativo que converte texto em áudio falado e salva o áudio sintetizado em um arquivo usando o Azure Speech no Foundry Tools.\n\nComo você deve completar o código Python? Para responder, selecione a opção apropriada na Área de Resposta.",
+    "answer_area": {
+      "type": "code",
+      "prefix": "import azure.cognitiveservices.speech as speechsdk\n...\nspeech_config = speechsdk.SpeechConfig(subscription=key, region=region)\naudio_config = speechsdk.audio.",
+      "suffix": "\n\nsynthesizer = speechsdk.SpeechSynthesizer(\n    speech_config=speech_config,\n    audio_config=audio_config\n)\n..."
+    },
+    "options": [
+      {
+        "id": "A",
+        "text": "AudioOutputConfig(filename=\"output.wav\")"
+      },
+      {
+        "id": "B",
+        "text": "AudioOutputConfig(stream)"
+      },
+      {
+        "id": "C",
+        "text": "AudioStreamFormat(wave_stream_format=AudioStreamWaveFormat.PCM)"
+      }
+    ],
+    "correct_answer": "A",
+    "official_rationale": "Para salvar a saída de síntese de fala diretamente em um arquivo em disco, instancia-se speechsdk.audio.AudioOutputConfig passando o parâmetro filename com o caminho do arquivo desejado.",
+    "explanation_why_correct": "**`AudioOutputConfig(filename=\"output.wav\")`** instrui o `SpeechSynthesizer` a gravar o áudio gerado diretamente no arquivo `output.wav` em vez de reproduzi-lo nos alto-falantes ou enviá-lo para um stream em memória.",
+    "explanation_why_incorrect": "• **B (`AudioOutputConfig(stream)`): Incorreta.** Direciona o áudio sintetizado para um fluxo de dados em memória (*stream*), e não diretamente para um arquivo em disco.\n• **C (`AudioStreamFormat(...)`): Incorreta.** Apenas especifica características técnicas do formato de codificação PCM, não sendo um objeto de configuração de saída aceito por `audio_config`.",
+    "additional_reading": [
+      {
+        "title": "Personalizar a saída de áudio na conversão de texto em fala do Azure",
+        "url": "https://learn.microsoft.com/azure/ai-services/speech-service/how-to-speech-synthesis"
+      }
+    ]
+  },
+  {
+    "id": 10,
+    "type": "dropdown",
+    "category": "Implementar soluções de IA com o Microsoft Foundry",
+    "category_en": "Implement AI solutions with Microsoft Foundry",
+    "objective": "2.1 Implementar aplicativos e agentes de IA generativa usando o Foundry",
+    "what_it_tests": "Identificar o recurso usado para definir o papel e os comportamentos de um agente de IA.",
+    "question": "PONTO DE INTERESSE (HOTSPOT)\n\nSelecione a resposta que completa corretamente a frase na Área de Resposta.",
+    "answer_area": {
+      "type": "sentence",
+      "prefix": "Para definir o papel (função) e os comportamentos de um agente, você deve configurar um ",
+      "suffix": " para o agente."
+    },
+    "options": [
+      {
+        "id": "A",
+        "text": "slot de implantação (deployment slot)"
+      },
+      {
+        "id": "B",
+        "text": "índice de incorporação (embedding index)"
+      },
+      {
+        "id": "C",
+        "text": "trabalho de ajuste fino (fine-tuning job)"
+      },
+      {
+        "id": "D",
+        "text": "prompt do sistema (system prompt)"
+      }
+    ],
+    "correct_answer": "D",
+    "official_rationale": "Para definir a função (role) e os comportamentos de um agente de IA, você deve configurar um prompt do sistema (system prompt / system instructions) para o agente.",
+    "explanation_why_correct": "O **prompt do sistema (`system prompt`)** fornece ao agente de IA suas diretrizes fundamentais, estabelecendo quem ele é, qual objetivo deve cumprir e como deve interagir com os usuários.",
+    "explanation_why_incorrect": "• **A (slot de implantação): Incorreta.** Refere-se à hospedagem de aplicativos web (como no Azure App Service) para troca de ambientes de produção/homologação.\n• **B (índice de incorporação): Incorreta.** É usado para busca vetorial e recuperação de documentos (RAG), não para definir a persona do agente.\n• **C (trabalho de ajuste fino): Incorreta.** O *fine-tuning* retreina os pesos de um modelo com grandes volumes de exemplos, não sendo o mecanismo padrão de configuração de papel de um agente.",
+    "additional_reading": [
+      {
+        "title": "Criar e configurar agentes no Microsoft Foundry",
+        "url": "https://learn.microsoft.com/azure/ai-studio/concepts/agents"
+      }
+    ]
+  },
+  {
+    "id": 11,
+    "type": "dropdown",
+    "category": "Implementar soluções de IA com o Microsoft Foundry",
+    "category_en": "Implement AI solutions with Microsoft Foundry",
+    "objective": "2.4 Implementar soluções de IA que analisam conteúdo usando o Foundry",
+    "what_it_tests": "Recuperar os resultados finais de uma operação assíncrona de análise no Azure Content Understanding usando o objeto poller em Python.",
+    "question": "PONTO DE INTERESSE (HOTSPOT)\n\nVocê está desenvolvendo um aplicativo que analisa faturas usando o Azure Content Understanding no Foundry Tools. Você precisa garantir que o aplicativo recupere os resultados da análise após a conclusão do processamento.\n\nComo você deve completar o código Python? Para responder, selecione a opção apropriada na Área de Resposta.",
+    "answer_area": {
+      "type": "code",
+      "prefix": "poller = client.begin_analyze(\n    analyzer_id=\"invoice\",\n    input_url=url\n)\nresult = poller.",
+      "suffix": "()"
+    },
+    "options": [
+      {
+        "id": "A",
+        "text": "get_results"
+      },
+      {
+        "id": "B",
+        "text": "result"
+      },
+      {
+        "id": "C",
+        "text": "status"
+      },
+      {
+        "id": "D",
+        "text": "wait"
+      }
+    ],
+    "correct_answer": "B",
+    "official_rationale": "Em operações de longa duração (LROPoller) iniciadas com begin_analyze no SDK do Azure para Python, o método poller.result() aguarda a conclusão do processamento e retorna o resultado final da análise.",
+    "explanation_why_correct": "O método **`result`** (`poller.result()`) é o padrão oficial da classe `LROPoller` no Azure SDK para Python: ele aguarda até que a operação assíncrona iniciada por `begin_analyze` termine e retorna o objeto com os dados extraídos da fatura.",
+    "explanation_why_incorrect": "• **A (`get_results`): Incorreta.** Não existe o método `get_results()` no objeto `LROPoller` do Azure SDK.\n• **C (`status`): Incorreta.** `poller.status()` retorna apenas uma string indicando o estado atual (ex.: `'InProgress'` ou `'Succeeded'`), sem retornar os dados extraídos.\n• **D (`wait`): Incorreta.** `poller.wait()` bloqueia a execução até o término da operação, mas retorna `None` em vez do conteúdo analisado.",
+    "additional_reading": [
+      {
+        "title": "Operações de longa duração (LROPoller) no Azure SDK para Python",
+        "url": "https://learn.microsoft.com/azure/developer/python/sdk/azure-sdk-library-usage-patterns#asynchronous-operations"
+      }
+    ]
+  },
+  {
+    "id": 12,
+    "type": "drag_drop",
+    "category": "Implementar soluções de IA com o Microsoft Foundry",
+    "category_en": "Implement AI solutions with Microsoft Foundry",
+    "objective": "2.1 Implementar aplicativos e agentes de IA generativa usando o Foundry",
+    "what_it_tests": "Configurar o endpoint base (base_url) com o nome do recurso Azure OpenAI e o parâmetro model com o nome da implantação (deployment name).",
+    "question": "ARRASTAR E SOLTAR (DRAG AND DROP)\n\nVocê tem um projeto do Microsoft Foundry chamado `project1` que contém um recurso do Azure OpenAI chamado `Resource1`.\nNo `Resource1`, você implanta um modelo `gpt-4.1-mini` usando uma implantação de modelo chamada `my-mini-gpt`.\nVocê precisa se conectar ao `my-mini-gpt` a partir de um aplicativo.\n\nComo você deve completar o código Python? Para responder, selecione ou arraste os valores apropriados para os destinos corretos na Área de Resposta. Cada valor pode ser usado uma vez, mais de uma vez ou nenhuma vez.",
+    "drag_drop_mode": "code",
+    "values": [
+      {
+        "id": "gpt-4.1-mini",
+        "text": "gpt-4.1-mini"
+      },
+      {
+        "id": "my-mini-gpt",
+        "text": "my-mini-gpt"
+      },
+      {
+        "id": "project1",
+        "text": "project1"
+      },
+      {
+        "id": "resource1",
+        "text": "resource1"
+      }
+    ],
+    "targets": [
+      {
+        "id": "slot_1",
+        "label": "Destino 1 (Subdomínio na URL base_url)",
+        "code_prefix": "client = OpenAI(api_key=\"...\",\n    base_url=\"https://",
+        "code_suffix": ".openai.azure.com/openai/v1/\",)"
+      },
+      {
+        "id": "slot_2",
+        "label": "Destino 2 (Parâmetro model em client.responses.create)",
+        "code_prefix": "\nresponse = client.responses.create(\n    model=\"",
+        "code_suffix": "\",\n    ...\n)"
+      }
+    ],
+    "correct_answer": {
+      "slot_1": "resource1",
+      "slot_2": "my-mini-gpt"
+    },
+    "official_rationale": "Ao conectar-se a um recurso do Azure OpenAI, o endpoint (base_url) usa o nome do recurso do Azure OpenAI (resource1.openai.azure.com), e o parâmetro model na requisição deve especificar o nome da implantação configurada (my-mini-gpt).",
+    "explanation_why_correct": "• **Destino 1 (`resource1`):** O endereço de endpoint de um recurso do Azure OpenAI segue o padrão `https://<nome-do-recurso>.openai.azure.com/openai/v1/`. Como o recurso se chama `Resource1`, o subdomínio é **`resource1`**.\n• **Destino 2 (`my-mini-gpt`):** No Azure OpenAI, você pode ter várias implantações do mesmo modelo base. Por isso, o parâmetro `model` na chamada da API recebe o **nome da implantação (`my-mini-gpt`)** para rotear a chamada à implantação correta.",
+    "explanation_why_incorrect": "• **`gpt-4.1-mini`:** É o identificador do modelo base no catálogo, mas as chamadas para endpoints do Azure OpenAI roteiam pelo nome da implantação (`my-mini-gpt`).\n• **`project1`:** É o nome do projeto no Microsoft Foundry, que não compõe o domínio `.openai.azure.com` nem o parâmetro `model`.",
+    "additional_reading": [
+      {
+        "title": "Como usar a API Responses no Azure OpenAI / Microsoft Foundry",
+        "url": "https://learn.microsoft.com/azure/ai-services/openai/how-to/responses"
+      }
+    ]
+  },
+  {
+    "id": 13,
+    "type": "yes_no",
+    "category": "Identificar conceitos e recursos de IA",
+    "category_en": "Identify AI concepts and capabilities",
+    "objective": "1.2 Identificar conceitos de IA generativa",
+    "what_it_tests": "Diferenciar como modelos de IA generativa e agentes de IA operam durante o atendimento às solicitações dos usuários.",
+    "question": "PONTO DE INTERESSE (HOTSPOT)\n\nPara cada uma das afirmações a seguir sobre modelos de IA generativa e agentes de IA, selecione Sim se a afirmação for verdadeira. Caso contrário, selecione Não.\nOBSERVAÇÃO: Cada seleção correta vale um ponto.",
+    "statements": [
+      {
+        "id": 1,
+        "text": "Um modelo de IA generativa é retreinado antes de executar cada solicitação do usuário. (An AI generative model is retrained before performing each user request.)"
+      },
+      {
+        "id": 2,
+        "text": "Um agente de IA responde copiando e colando respostas armazenadas em um banco de dados. (An AI agent responds by copying and pasting answers stored in a database.)"
+      },
+      {
+        "id": 3,
+        "text": "Um agente de IA usa um modelo de IA generativa para estabelecer ações com base na entrada do usuário. (An AI agent uses a generative AI model to establish actions based on user input.)"
+      }
+    ],
+    "correct_answer": {
+      "1": "No",
+      "2": "No",
+      "3": "Yes"
+    },
+    "official_rationale": "Modelos de IA generativa são pré-treinados e executam inferência (sem retreinamento a cada prompt). Agentes de IA não apenas copiam respostas de bancos de dados, mas utilizam um modelo de IA generativa para raciocinar e determinar quais ações executar com base na solicitação do usuário.",
+    "explanation_why_correct": "• **Afirmação 1 (Não):** O treinamento de um modelo generativo ocorre previamente. Quando um usuário envia um prompt, o modelo apenas executa a **inferência** com seus pesos já treinados.\n• **Afirmação 2 (Não):** Agentes de IA geram respostas originais contextualizadas por meio de um modelo generativo, e não simplesmente copiando textos fixos de um banco de dados.\n• **Afirmação 3 (Sim):** Um agente de IA usa o modelo de IA generativa como motor de raciocínio para interpretar a intenção do usuário e decidir quais ferramentas ou ações acionar.",
+    "explanation_why_incorrect": "Retreinar um modelo a cada requisição seria inviável em termos de tempo e custo computacional; a etapa em tempo de uso é sempre a inferência.",
+    "additional_reading": [
+      {
+        "title": "Fundamentos de IA Generativa e Agentes de IA no Microsoft Learn",
+        "url": "https://learn.microsoft.com/training/modules/fundamentals-generative-ai/"
+      }
+    ]
+  },
+  {
+    "id": 14,
+    "type": "drag_drop",
+    "category": "Identificar conceitos e recursos de IA",
+    "category_en": "Identify AI concepts and capabilities",
+    "objective": "1.3 Identificar princípios e práticas para IA responsável",
+    "what_it_tests": "Associar práticas reais de governança e engenharia de IA aos seis princípios de IA Responsável da Microsoft.",
+    "question": "ARRASTAR E SOLTAR (DRAG AND DROP)\n\nVocê está revisando as melhores práticas para o uso de IA na sua empresa.\nQual princípio de IA Responsável da Microsoft cada tarefa exemplifica? Para responder, associe os princípios apropriados às tarefas corretas na Área de Resposta. Cada princípio pode ser usado uma vez, mais de uma vez ou nenhuma vez.",
+    "drag_drop_mode": "matching",
+    "values": [
+      {
+        "id": "Accountability",
+        "text": "Responsabilidade (Accountability)"
+      },
+      {
+        "id": "Fairness",
+        "text": "Justiça / Equidade (Fairness)"
+      },
+      {
+        "id": "Inclusiveness",
+        "text": "Inclusão (Inclusiveness)"
+      },
+      {
+        "id": "Privacy and security",
+        "text": "Privacidade e segurança (Privacy and security)"
+      },
+      {
+        "id": "Reliability and safety",
+        "text": "Confiabilidade e segurança (Reliability and safety)"
+      },
+      {
+        "id": "Transparency",
+        "text": "Transparência (Transparency)"
+      }
+    ],
+    "targets": [
+      {
+        "id": "task_1",
+        "prompt": "Avaliar as saídas do modelo para garantir que as decisões NÃO sejam tendenciosas contra grupos demográficos específicos:"
+      },
+      {
+        "id": "task_2",
+        "prompt": "Criptografar dados confidenciais de clientes e restringir o acesso ao sistema a pessoal autorizado:"
+      },
+      {
+        "id": "task_3",
+        "prompt": "Informar os usuários quando eles estão interagindo com um sistema de IA e explicar as capacidades e limitações do sistema:"
+      },
+      {
+        "id": "task_4",
+        "prompt": "Testar sistemas de IA sob diferentes condições para reduzir falhas inesperadas:"
+      }
+    ],
+    "correct_answer": {
+      "task_1": "Fairness",
+      "task_2": "Privacy and security",
+      "task_3": "Transparency",
+      "task_4": "Reliability and safety"
+    },
+    "official_rationale": "Avaliar vieses demográficos exemplifica Justiça/Equidade (Fairness); criptografar dados e restringir acesso exemplifica Privacidade e Segurança (Privacy and security); informar usuários sobre o uso e limitações da IA exemplifica Transparência (Transparency); e testar o sistema para evitar falhas inesperadas exemplifica Confiabilidade e Segurança (Reliability and safety).",
+    "explanation_why_correct": "• **Tarefa 1 → Justiça / Equidade (`Fairness`):** Garante que o sistema trate todos os grupos demográficos de forma imparcial e sem discriminação.\n• **Tarefa 2 → Privacidade e segurança (`Privacy and security`):** Protege dados sensíveis por meio de criptografia e controle de acesso restrito.\n• **Tarefa 3 → Transparência (`Transparency`):** Deixa claro ao usuário que ele está interagindo com uma IA e explica como o sistema funciona e quais são suas limitações.\n• **Tarefa 4 → Confiabilidade e segurança (`Reliability and safety`):** Garante que o sistema opere de maneira consistente, segura e previsível sob diversas condições através de testes rigorosos.",
+    "explanation_why_incorrect": "• **Responsabilidade (`Accountability`):** Refere-se à governança humana, prestação de contas e supervisão sobre as decisões do sistema.\n• **Inclusão (`Inclusiveness`):** Refere-se à acessibilidade (ex.: suporte a leitores de tela, múltiplos idiomas) para capacitar todas as pessoas.",
+    "additional_reading": [
+      {
+        "title": "Princípios de IA Responsável da Microsoft",
+        "url": "https://learn.microsoft.com/training/modules/get-started-ai-fundamentals/5-understand-responsible-ai"
+      }
+    ]
+  },
+  {
+    "id": 15,
+    "type": "yes_no",
+    "category": "Identificar conceitos e recursos de IA",
+    "category_en": "Identify AI concepts and capabilities",
+    "objective": "1.2 Identificar conceitos de IA generativa",
+    "what_it_tests": "Compreender o estágio de inferência e o mecanismo de previsão do próximo token em modelos de IA generativa.",
+    "question": "PONTO DE INTERESSE (HOTSPOT)\n\nPara cada uma das afirmações a seguir sobre modelos de IA generativa, selecione Sim se a afirmação for verdadeira. Caso contrário, selecione Não.\nOBSERVAÇÃO: Cada seleção correta vale um ponto.",
+    "statements": [
+      {
+        "id": 1,
+        "text": "A geração de uma resposta para o prompt de um usuário ocorre durante o estágio de inferência. (Generating a response to a user prompt occurs during the inference stage.)"
+      },
+      {
+        "id": 2,
+        "text": "Um modelo de IA generativa gera respostas copiando documentos armazenados diretamente dos dados de treinamento do modelo. (A generative AI model generates responses by copying stored documents directly from the model's training data.)"
+      },
+      {
+        "id": 3,
+        "text": "Um modelo de IA generativa produz saída prevendo o próximo token com base em padrões aprendidos a partir dos dados de treinamento do modelo. (A generative AI model produces output by predicting the next token based on patterns learned from the model's training data.)"
+      }
+    ],
+    "correct_answer": {
+      "1": "Yes",
+      "2": "No",
+      "3": "Yes"
+    },
+    "official_rationale": "Quando um modelo de IA generativa processa um prompt e gera uma resposta, ele está executando inferência. Ele não armazena nem copia documentos de treinamento; em vez disso, prevê iterativamente o próximo token mais provável com base nos padrões estatísticos aprendidos durante o treinamento.",
+    "explanation_why_correct": "• **Afirmação 1 (Sim):** O momento em que um modelo já treinado recebe uma entrada (prompt) e calcula uma resposta é denominado **estágio de inferência**.\n• **Afirmação 2 (Não):** Modelos generativos não funcionam como bancos de dados de cópia de documentos; seus parâmetros contêm representações matemáticas de padrões aprendidos.\n• **Afirmação 3 (Sim):** Grandes Modelos de Linguagem (LLMs) geram texto de forma autorregressiva, prevendo o próximo *token* com base no contexto e nos padrões aprendidos no treinamento.",
+    "explanation_why_incorrect": "É um erro comum achar que LLMs guardam cópias literais dos textos de treinamento dentro de um banco de dados interno.",
+    "additional_reading": [
+      {
+        "title": "Como funcionam os Grandes Modelos de Linguagem (LLMs)",
+        "url": "https://learn.microsoft.com/training/modules/fundamentals-generative-ai/"
+      }
+    ]
+  },
+  {
+    "id": 16,
+    "type": "single",
+    "category": "Identificar conceitos e recursos de IA",
+    "category_en": "Identify AI concepts and capabilities",
+    "objective": "1.1 Identificar recursos de soluções de IA",
+    "what_it_tests": "Distinguir entre geração de imagens e cargas de trabalho analíticas de visão computacional.",
+    "question": "Você precisa criar uma solução de IA que gere novas imagens de produtos com base em descrições escritas fornecidas pelos usuários.\n\nQual carga de trabalho (workload) de IA você deve usar?",
+    "options": [
+      {
+        "id": "A",
+        "text": "Análise de imagem (Image analysis)"
+      },
+      {
+        "id": "B",
+        "text": "Geração de imagens (Image generation)"
+      },
+      {
+        "id": "C",
+        "text": "Detecção de objetos (Object detection)"
+      },
+      {
+        "id": "D",
+        "text": "Reconhecimento óptico de caracteres (OCR)"
+      }
+    ],
+    "correct_answer": "B",
+    "official_rationale": "A geração de imagens (image generation) utiliza modelos de IA generativa para criar novas imagens visuais a partir de prompts de texto descritivos fornecidos pelos usuários.",
+    "explanation_why_correct": "A **geração de imagens (Image generation)** é a carga de trabalho de IA projetada especificamente para sintetizar novas imagens originais a partir de descrições em linguagem natural (*text-to-image*).",
+    "explanation_why_incorrect": "• **A (Análise de imagem): Incorreta.** Extrai legendas, marcas ou tags de imagens existentes, mas não cria imagens novas.\n• **C (Detecção de objetos): Incorreta.** Localiza objetos dentro de uma imagem existente com caixas delimitadoras (*bounding boxes*).\n• **D (OCR): Incorreta.** Lê e extrai texto presente em imagens existentes.",
+    "additional_reading": [
+      {
+        "title": "Explorar recursos de visão computacional e geração de imagens no Azure",
+        "url": "https://learn.microsoft.com/training/modules/get-started-ai-fundamentals/"
+      }
+    ]
+  },
+  {
+    "id": 17,
+    "type": "dropdown",
+    "category": "Identificar conceitos e recursos de IA",
+    "category_en": "Identify AI concepts and capabilities",
+    "objective": "1.1 Identificar recursos de soluções de IA",
+    "what_it_tests": "Identificar que soluções de extração de informações que leem texto em imagens e documentos digitalizados dependem de visão computacional.",
+    "question": "PONTO DE INTERESSE (HOTSPOT)\n\nSelecione a resposta que completa corretamente a frase na Área de Resposta.",
+    "answer_area": {
+      "type": "sentence",
+      "prefix": "Soluções de extração de informações que detectam e leem texto em documentos digitalizados e imagens dependem de ",
+      "suffix": "."
+    },
+    "options": [
+      {
+        "id": "A",
+        "text": "visão computacional (computer vision)"
+      },
+      {
+        "id": "B",
+        "text": "geração de imagens (image generation)"
+      },
+      {
+        "id": "C",
+        "text": "análise de sentimento (sentiment analysis)"
+      },
+      {
+        "id": "D",
+        "text": "síntese de fala (speech synthesis)"
+      }
+    ],
+    "correct_answer": "A",
+    "official_rationale": "Detectar e ler texto em documentos digitalizados e fotografias (por meio de OCR) requer capacidades de visão computacional (computer vision) para processar os pixels da imagem e identificar caracteres.",
+    "explanation_why_correct": "A leitura de texto contido em imagens ou documentos digitalizados (OCR) é uma técnica de **visão computacional (`computer vision`)**, na qual o modelo analisa visualmente a imagem para localizar linhas, palavras e caracteres.",
+    "explanation_why_incorrect": "• **B (geração de imagens): Incorreta.** Cria novas imagens em vez de ler texto em documentos.\n• **C (análise de sentimento): Incorreta.** Avalia o tom emocional (positivo, neutro, negativo) de um texto já extraído.\n• **D (síntese de fala): Incorreta.** Converte texto em áudio falado.",
+    "additional_reading": [
+      {
+        "title": "Ler texto em imagens e documentos com Visão Computacional do Azure",
+        "url": "https://learn.microsoft.com/azure/ai-services/computer-vision/concept-ocr"
+      }
+    ]
+  },
+  {
+    "id": 18,
+    "type": "single",
+    "category": "Implementar soluções de IA com o Microsoft Foundry",
+    "category_en": "Implement AI solutions with Microsoft Foundry",
+    "objective": "2.1 Implementar aplicativos e agentes de IA generativa usando o Foundry",
+    "what_it_tests": "Configurar o parâmetro Max completion tokens para controlar o tamanho da resposta e minimizar custos de inferência.",
+    "question": "Você tem um projeto no Microsoft Foundry com uma implantação de modelo de IA generativa.\n\nVocê precisa garantir que as respostas geradas pelo modelo minimizem os custos e permaneçam dentro de um limite de tamanho definido.\n\nQual parâmetro você deve configurar?",
+    "options": [
+      {
+        "id": "A",
+        "text": "Top P"
+      },
+      {
+        "id": "B",
+        "text": "Temperatura (Temperature)"
+      },
+      {
+        "id": "C",
+        "text": "Máximo de tokens de conclusão (Max completion tokens)"
+      },
+      {
+        "id": "D",
+        "text": "Configurações da versão do modelo (Model version settings)"
+      }
+    ],
+    "correct_answer": "C",
+    "official_rationale": "O parâmetro Máximo de tokens de conclusão (Max completion tokens) define um limite superior para a quantidade de tokens gerados em cada resposta, mantendo o tamanho da saída controlado e reduzindo os custos baseados no consumo de tokens.",
+    "explanation_why_correct": "O parâmetro **Máximo de tokens de conclusão (`Max completion tokens` / `max_tokens`)** define o número máximo de tokens que o modelo pode produzir na resposta. Como os serviços de IA generativa cobram por token gerado, limitar esse valor garante tanto respostas dentro do limite de tamanho quanto redução direta de custos.",
+    "explanation_why_incorrect": "• **A (Top P): Incorreta.** Controla a amostragem por núcleo (*nucleus sampling*) de probabilidades das palavras, sem limitar o comprimento da resposta.\n• **B (Temperatura): Incorreta.** Controla a aleatoriedade/criatividade das palavras escolhidas, não o tamanho da resposta.\n• **D (Configurações da versão do modelo): Incorreta.** Define a revisão do modelo implantado e políticas de atualização, não o limite de tokens por resposta.",
+    "additional_reading": [
+      {
+        "title": "Parâmetros de solicitação e gerenciamento de tokens no Azure OpenAI",
+        "url": "https://learn.microsoft.com/azure/ai-services/openai/reference"
+      }
+    ]
+  },
+  {
+    "id": 19,
+    "type": "yes_no",
+    "category": "Identificar conceitos e recursos de IA",
+    "category_en": "Identify AI concepts and capabilities",
+    "objective": "1.3 Identificar princípios e práticas para IA responsável",
+    "what_it_tests": "Avaliar práticas de governança, supervisão humana (human-in-the-loop) e monitoramento contínuo ligadas ao princípio de Responsabilidade (Accountability).",
+    "question": "PONTO DE INTERESSE (HOTSPOT)\n\nPara cada uma das afirmações a seguir sobre práticas de IA Responsável, selecione Sim se a afirmação for verdadeira. Caso contrário, selecione Não.\nOBSERVAÇÃO: Cada seleção correta vale um ponto.",
+    "statements": [
+      {
+        "id": 1,
+        "text": "Práticas de humano no circuito (human-in-the-loop) fornecem responsabilidade (accountability) pelas decisões geradas por IA. (Human-in-the-loop practices provide accountability for AI-generated decisions.)"
+      },
+      {
+        "id": 2,
+        "text": "A implantação de um sistema de IA em um ambiente de produção elimina a necessidade de monitoramento contínuo. (Deploying an AI system to a production environment eliminates the need for ongoing monitoring.)"
+      },
+      {
+        "id": 3,
+        "text": "Divulgar a equipe que projetou e implantou um sistema de IA fornece responsabilidade (accountability) pela saída do sistema. (Disclosing the team that designed and deployed an AI system provides accountability for the system's output.)"
+      }
+    ],
+    "correct_answer": {
+      "1": "Yes",
+      "2": "No",
+      "3": "Yes"
+    },
+    "official_rationale": "A supervisão humana (human-in-the-loop) e a identificação clara da equipe responsável pelo design e implantação garantem responsabilidade (accountability) pelos resultados da IA. O monitoramento contínuo continua sendo indispensável após a implantação em produção.",
+    "explanation_why_correct": "• **Afirmação 1 (Sim):** Manter humanos na revisão de decisões críticas (*human-in-the-loop*) assegura que haja responsabilidade humana final pelas ações tomadas.\n• **Afirmação 2 (Não):** Após ir para produção, um sistema de IA exige **monitoramento contínuo** para identificar degradação de modelo (*drift*), novos vieses ou comportamentos inesperados.\n• **Afirmação 3 (Sim):** Documentar e divulgar claramente qual equipe projetou, validou e implantou o sistema estabelece propriedade e prestação de contas (*accountability*) pelos resultados do sistema.",
+    "explanation_why_incorrect": "A governança de IA Responsável nunca termina no momento do deploy; o monitoramento em produção é um requisito essencial de Confiabilidade e Responsabilidade.",
+    "additional_reading": [
+      {
+        "title": "Princípios de IA Responsável: Responsabilidade (Accountability)",
+        "url": "https://learn.microsoft.com/training/modules/get-started-ai-fundamentals/5-understand-responsible-ai"
+      }
+    ]
+  },
+  {
+    "id": 20,
+    "type": "single",
+    "category": "Implementar soluções de IA com o Microsoft Foundry",
+    "category_en": "Implement AI solutions with Microsoft Foundry",
+    "objective": "2.2 Implementar soluções de IA para texto e fala usando o Foundry",
+    "what_it_tests": "Selecionar a técnica de análise de texto apropriada para identificar pessoas, organizações e locais em textos não estruturados.",
+    "question": "Sua empresa processa e-mails de suporte ao cliente.\n\nVocê precisa implementar uma solução de IA que identifique automaticamente menções a pessoas, organizações e locais nos e-mails.\n\nQual técnica de análise de texto você deve usar?",
+    "options": [
+      {
+        "id": "A",
+        "text": "Reconhecimento de Entidades Nomeadas (NER - Named Entity Recognition)"
+      },
+      {
+        "id": "B",
+        "text": "Extração de frases-chave (Key phrase extraction)"
+      },
+      {
+        "id": "C",
+        "text": "Análise de sentimento (Sentiment analysis)"
+      },
+      {
+        "id": "D",
+        "text": "Sumarização / Resumo (Summarization)"
+      }
+    ],
+    "correct_answer": "A",
+    "official_rationale": "O Reconhecimento de Entidades Nomeadas (NER) identifica e classifica palavras ou termos do texto em categorias predefinidas, como Pessoas, Organizações, Locais, Datas e Quantidades.",
+    "explanation_why_correct": "O **Reconhecimento de Entidades Nomeadas (NER)** no Azure AI Language analisa textos não estruturados (como e-mails) e extrai entidades categorizadas especificamente como `Person` (Pessoas), `Organization` (Organizações) e `Location` (Locais).",
+    "explanation_why_incorrect": "• **B (Extração de frases-chave): Incorreta.** Identifica apenas os conceitos ou pontos principais de um texto, sem classificá-los em categorias como Pessoa, Organização ou Local.\n• **C (Análise de sentimento): Incorreta.** Avalia se o tom do e-mail é positivo, neutro ou negativo.\n• **D (Sumarização): Incorreta.** Cria um resumo curto do documento, sem extrair e categorizar entidades específicas.",
+    "additional_reading": [
+      {
+        "title": "O que é o Reconhecimento de Entidades Nomeadas (NER) no Azure AI Language?",
+        "url": "https://learn.microsoft.com/azure/ai-services/language-service/named-entity-recognition/overview"
+      }
+    ]
+  },
+  {
+    "id": 21,
+    "type": "dropdown",
+    "category": "Identificar conceitos e recursos de IA",
+    "category_en": "Identify AI concepts and capabilities",
+    "objective": "1.3 Identificar princípios e práticas para IA responsável",
+    "what_it_tests": "Relacionar a supervisão de revisores humanos e a responsabilidade pelo resultado final ao princípio de Responsabilidade (Accountability).",
+    "question": "PONTO DE INTERESSE (HOTSPOT)\n\nSelecione a resposta que completa corretamente a frase na Área de Resposta.",
+    "answer_area": {
+      "type": "sentence",
+      "prefix": "Garantir que revisores humanos supervisionem as decisões geradas por IA e permaneçam responsáveis pelo resultado final é um exemplo do princípio de IA Responsável da Microsoft de ",
+      "suffix": "."
+    },
+    "options": [
+      {
+        "id": "A",
+        "text": "responsabilidade (accountability)"
+      },
+      {
+        "id": "B",
+        "text": "justiça / equidade (fairness)"
+      },
+      {
+        "id": "C",
+        "text": "privacidade e segurança (privacy and security)"
+      },
+      {
+        "id": "D",
+        "text": "transparência (transparency)"
+      }
+    ],
+    "correct_answer": "A",
+    "official_rationale": "O princípio de Responsabilidade (Accountability) garante que as pessoas que criam e operam sistemas de IA supervisionem as decisões e permaneçam responsáveis pelos resultados finais.",
+    "explanation_why_correct": "O princípio de **responsabilidade (`accountability`)** estabelece que sistemas de IA não podem ser os detentores finais da responsabilidade moral ou legal; revisores humanos devem supervisionar decisões relevantes e responder pelo resultado final.",
+    "explanation_why_incorrect": "• **B (justiça / equidade): Incorreta.** Foca em evitar tratamento discriminatório ou enviesado contra grupos demográficos.\n• **C (privacidade e segurança): Incorreta.** Foca na proteção de dados pessoais e confidenciais.\n• **D (transparência): Incorreta.** Foca em tornar o funcionamento e as limitações do sistema compreensíveis aos usuários.",
+    "additional_reading": [
+      {
+        "title": "Princípios de IA Responsável da Microsoft",
+        "url": "https://learn.microsoft.com/training/modules/get-started-ai-fundamentals/5-understand-responsible-ai"
+      }
+    ]
+  },
+  {
+    "id": 22,
+    "type": "single",
+    "category": "Identificar conceitos e recursos de IA",
+    "category_en": "Identify AI concepts and capabilities",
+    "objective": "1.1 Identificar recursos de soluções de IA",
+    "what_it_tests": "Identificar a carga de trabalho de IA generativa para redação de novos textos (e-mails de marketing) a partir de um prompt.",
+    "question": "Você precisa criar uma solução de IA que gere rascunhos de e-mails de marketing com base em uma breve descrição de um produto e seu público-alvo.\n\nQual carga de trabalho (workload) de IA você deve usar?",
+    "options": [
+      {
+        "id": "A",
+        "text": "Reconhecimento de fala (Speech recognition)"
+      },
+      {
+        "id": "B",
+        "text": "Classificação de texto (Text classification)"
+      },
+      {
+        "id": "C",
+        "text": "IA generativa (Generative AI)"
+      },
+      {
+        "id": "D",
+        "text": "Visão computacional (Computer vision)"
+      }
+    ],
+    "correct_answer": "C",
+    "official_rationale": "A IA generativa (Generative AI) é usada para criar novos conteúdos originais, como rascunhos de e-mails de marketing, a partir de instruções em linguagem natural sobre um produto e seu público-alvo.",
+    "explanation_why_correct": "A **IA generativa (Generative AI)** utiliza Grandes Modelos de Linguagem (LLMs) capazes de redigir textos originais, criativos e adaptados ao público-alvo a partir de uma breve descrição fornecida no prompt.",
+    "explanation_why_incorrect": "• **A (Reconhecimento de fala): Incorreta.** Converte áudio falado em texto.\n• **B (Classificação de texto): Incorreta.** Apenas atribui rótulos/categorias a um texto já existente, sem criar novos textos.\n• **D (Visão computacional): Incorreta.** Analisa imagens e vídeos.",
+    "additional_reading": [
+      {
+        "title": "Explorar a IA Generativa no Microsoft Learn",
+        "url": "https://learn.microsoft.com/training/modules/fundamentals-generative-ai/"
+      }
+    ]
+  },
+  {
+    "id": 23,
+    "type": "yes_no",
+    "category": "Implementar soluções de IA com o Microsoft Foundry",
+    "category_en": "Implement AI solutions with Microsoft Foundry",
+    "objective": "2.1 Implementar aplicativos e agentes de IA generativa usando o Foundry",
+    "what_it_tests": "Compreender o ciclo de implantação e inferência de modelos no Microsoft Foundry (temperatura, roteamento por nome de implantação e consumo via código/playground).",
+    "question": "PONTO DE INTERESSE (HOTSPOT)\n\nPara cada uma das afirmações a seguir sobre implantação e uso de modelos no Microsoft Foundry, selecione Sim se a afirmação for verdadeira. Caso contrário, selecione Não.\nOBSERVAÇÃO: Cada seleção correta vale um ponto.",
+    "statements": [
+      {
+        "id": 1,
+        "text": "O parâmetro Temperatura (Temperature) pode ser definido antes de implantar um modelo. (The Temperature parameter can be set before deploying a model.)"
+      },
+      {
+        "id": 2,
+        "text": "Durante a inferência, o nome do modelo (da implantação) é usado para rotear solicitações para uma implantação específica. (During inference, the model name is used to route requests to a specific deployment.)"
+      },
+      {
+        "id": 3,
+        "text": "Após a implantação de um modelo, tanto código quanto ferramentas de teste podem ser usados para interagir com o modelo. (After a model is deployed, both code and testing tools can be used to interact with the model.)"
+      }
+    ],
+    "correct_answer": {
+      "1": "No",
+      "2": "Yes",
+      "3": "Yes"
+    },
+    "official_rationale": "A Temperatura é um parâmetro de inferência configurado após a implantação (no playground ou nas chamadas de API). O nome passado no parâmetro model roteia a requisição para a implantação específica, e um modelo implantado pode ser testado tanto no playground quanto via código.",
+    "explanation_why_correct": "• **Afirmação 1 (Não):** Você precisa **implantar** um modelo antes de poder testá-lo e ajustar parâmetros de inferência como a *Temperatura*.\n• **Afirmação 2 (Sim):** Durante as chamadas de inferência, o parâmetro `model` identifica para qual implantação específica a solicitação deve ser roteada.\n• **Afirmação 3 (Sim):** Assim que o modelo é implantado, você pode interagir com ele usando ferramentas visuais de teste (como o *Chat Playground* do Foundry) ou integrando-o em seu código via SDK/REST.",
+    "explanation_why_incorrect": "Antes de implantar o modelo no catálogo, não há endpoint ativo para configurar parâmetros de geração como Temperatura ou Top P.",
+    "additional_reading": [
+      {
+        "title": "Implantar e testar modelos no Microsoft Foundry",
+        "url": "https://learn.microsoft.com/azure/ai-studio/"
+      }
+    ]
+  },
+  {
+    "id": 24,
+    "type": "dropdown",
+    "category": "Identificar conceitos e recursos de IA",
+    "category_en": "Identify AI concepts and capabilities",
+    "objective": "1.3 Identificar princípios e práticas para IA responsável",
+    "what_it_tests": "Identificar o princípio de Justiça / Equidade (Fairness) ao avaliar resultados do modelo entre grupos demográficos para reduzir vieses.",
+    "question": "PONTO DE INTERESSE (HOTSPOT)\n\nSelecione a resposta que completa corretamente a frase na Área de Resposta.",
+    "answer_area": {
+      "type": "sentence",
+      "prefix": "Avaliar os resultados do modelo entre grupos demográficos para reduzir o viés é um exemplo do princípio de IA Responsável da Microsoft de ",
+      "suffix": "."
+    },
+    "options": [
+      {
+        "id": "A",
+        "text": "responsabilidade (accountability)"
+      },
+      {
+        "id": "B",
+        "text": "justiça / equidade (fairness)"
+      },
+      {
+        "id": "C",
+        "text": "privacidade e segurança (privacy and security)"
+      },
+      {
+        "id": "D",
+        "text": "transparência (transparency)"
+      }
+    ],
+    "correct_answer": "B",
+    "official_rationale": "Avaliar os resultados de um modelo em diferentes grupos demográficos para identificar e reduzir vieses (bias) é a prática central do princípio de Justiça / Equidade (Fairness).",
+    "explanation_why_correct": "O princípio de **justiça / equidade (`fairness`)** exige que os sistemas de IA tratem todas as pessoas de maneira justa, avaliando sistematicamente os resultados entre diferentes grupos demográficos para evitar discriminação ou viés.",
+    "explanation_why_incorrect": "• **A (responsabilidade): Incorreta.** Trata de governança e supervisão humana.\n• **C (privacidade e segurança): Incorreta.** Trata de proteção de dados e controle de acesso.\n• **D (transparência): Incorreta.** Trata de inteligibilidade e explicação sobre o funcionamento da IA.",
+    "additional_reading": [
+      {
+        "title": "Princípios de IA Responsável: Justiça (Fairness)",
+        "url": "https://learn.microsoft.com/training/modules/get-started-ai-fundamentals/5-understand-responsible-ai"
+      }
+    ]
+  },
+  {
+    "id": 25,
+    "type": "dropdown",
+    "category": "Identificar conceitos e recursos de IA",
+    "category_en": "Identify AI concepts and capabilities",
+    "objective": "1.3 Identificar princípios e práticas para IA responsável",
+    "what_it_tests": "Compreender a exigência central do princípio de Transparência (Transparency) da IA Responsável da Microsoft.",
+    "question": "PONTO DE INTERESSE (HOTSPOT)\n\nSelecione a resposta que completa corretamente a frase na Área de Resposta.",
+    "answer_area": {
+      "type": "sentence",
+      "prefix": "O princípio de IA Responsável da Microsoft de transparência (transparency) exige que os sistemas de IA ",
+      "suffix": "."
+    },
+    "options": [
+      {
+        "id": "A",
+        "text": "sejam explicáveis aos usuários (be explainable to users)"
+      },
+      {
+        "id": "B",
+        "text": "protejam dados confidenciais dos usuários (protect sensitive user data)"
+      },
+      {
+        "id": "C",
+        "text": "reduzam o viés nas decisões (reduce bias in decisions)"
+      },
+      {
+        "id": "D",
+        "text": "exijam supervisão humana (require human oversight)"
+      }
+    ],
+    "correct_answer": "A",
+    "official_rationale": "O princípio de Transparência (Transparency) exige que os sistemas de IA sejam compreensíveis e explicáveis aos usuários, informando como as decisões são tomadas e quais são as limitações do sistema.",
+    "explanation_why_correct": "A **transparência (`transparency`)** determina que os sistemas de IA **sejam explicáveis aos usuários (`be explainable to users`)**, permitindo que as pessoas compreendam o propósito do sistema, como ele chega às suas conclusões e quais são suas limitações.",
+    "explanation_why_incorrect": "• **B (proteger dados confidenciais): Incorreta.** Refere-se ao princípio de *Privacidade e Segurança*.\n• **C (reduzir o viés nas decisões): Incorreta.** Refere-se ao princípio de *Justiça / Equidade (Fairness)*.\n• **D (exigir supervisão humana): Incorreta.** Refere-se ao princípio de *Responsabilidade (Accountability)*.",
+    "additional_reading": [
+      {
+        "title": "Princípios de IA Responsável: Transparência",
+        "url": "https://learn.microsoft.com/training/modules/get-started-ai-fundamentals/5-understand-responsible-ai"
+      }
+    ]
+  },
+  {
+    "id": 26,
+    "type": "single",
+    "category": "Identificar conceitos e recursos de IA",
+    "category_en": "Identify AI concepts and capabilities",
+    "objective": "1.3 Identificar princípios e práticas para IA responsável",
+    "what_it_tests": "Identificar um exemplo prático do princípio de Inclusão (Inclusiveness) em um aplicativo de suporte ao cliente.",
+    "question": "Você está desenvolvendo um aplicativo de suporte ao cliente com inteligência artificial.\n\nQual tarefa é um exemplo do princípio de Inclusão (Inclusiveness) da IA Responsável da Microsoft?",
+    "options": [
+      {
+        "id": "A",
+        "text": "Criptografar os dados armazenados dos clientes e restringir o acesso usando controles baseados em funções (RBAC)."
+      },
+      {
+        "id": "B",
+        "text": "Avaliar os resultados do modelo em diferentes grupos demográficos para reduzir o viés."
+      },
+      {
+        "id": "C",
+        "text": "Projetar a interface para oferecer suporte a vários idiomas e leitores de tela."
+      },
+      {
+        "id": "D",
+        "text": "Fornecer explicações sobre como as previsões são geradas."
+      }
+    ],
+    "correct_answer": "C",
+    "official_rationale": "O princípio de Inclusão (Inclusiveness) visa garantir que os sistemas de IA capacitem e engajem pessoas de todas as habilidades e origens, incluindo recursos de acessibilidade como leitores de tela e suporte a múltiplos idiomas.",
+    "explanation_why_correct": "**Projetar a interface para oferecer suporte a vários idiomas e leitores de tela** garante que pessoas com deficiência visual ou que falam diferentes idiomas possam utilizar o aplicativo sem barreiras, exemplificando perfeitamente o princípio de **Inclusão (Inclusiveness)**.",
+    "explanation_why_incorrect": "• **A: Incorreta.** Criptografia e controle de acesso exemplificam *Privacidade e Segurança*.\n• **B: Incorreta.** Reduzir viés entre grupos demográficos exemplifica *Justiça / Equidade (Fairness)*.\n• **D: Incorreta.** Explicar como as previsões são geradas exemplifica *Transparência*.",
+    "additional_reading": [
+      {
+        "title": "Princípios de IA Responsável: Inclusão (Inclusiveness)",
+        "url": "https://learn.microsoft.com/training/modules/get-started-ai-fundamentals/5-understand-responsible-ai"
+      }
+    ]
+  },
+  {
+    "id": 27,
+    "type": "dropdown",
+    "category": "Identificar conceitos e recursos de IA",
+    "category_en": "Identify AI concepts and capabilities",
+    "objective": "1.2 Identificar conceitos de IA generativa",
+    "what_it_tests": "Definir a carga de trabalho de IA que produz novos conteúdos com base na entrada do usuário como IA generativa.",
+    "question": "PONTO DE INTERESSE (HOTSPOT)\n\nSelecione a resposta que completa corretamente a frase na Área de Resposta.",
+    "answer_area": {
+      "type": "sentence",
+      "prefix": "Uma carga de trabalho de IA que produz novo conteúdo com base na entrada do usuário é um exemplo de ",
+      "suffix": "."
+    },
+    "options": [
+      {
+        "id": "A",
+        "text": "compreensão de conteúdo (content understanding)"
+      },
+      {
+        "id": "B",
+        "text": "IA generativa (generative AI)"
+      },
+      {
+        "id": "C",
+        "text": "extração de informações (information extraction)"
+      },
+      {
+        "id": "D",
+        "text": "análise de texto (text analysis)"
+      }
+    ],
+    "correct_answer": "B",
+    "official_rationale": "Uma carga de trabalho de IA que produz novo conteúdo (texto, imagem, áudio ou código) com base na entrada do usuário é a definição de IA generativa (generative AI).",
+    "explanation_why_correct": "A **IA generativa (`generative AI`)** é a categoria de cargas de trabalho de inteligência artificial capaz de produzir conteúdo inédito em resposta a um prompt ou entrada do usuário.",
+    "explanation_why_incorrect": "• **A (compreensão de conteúdo): Incorreta.** Analisa e estrutura conteúdo multimodal existente.\n• **C (extração de informações): Incorreta.** Extrai campos e dados de documentos existentes.\n• **D (análise de texto): Incorreta.** Inspeciona textos existentes para identificar idioma, sentimento ou entidades.",
+    "additional_reading": [
+      {
+        "title": "Fundamentos da IA Generativa",
+        "url": "https://learn.microsoft.com/training/modules/fundamentals-generative-ai/"
+      }
+    ]
+  },
+  {
+    "id": 28,
+    "type": "yes_no",
+    "category": "Identificar conceitos e recursos de IA",
+    "category_en": "Identify AI concepts and capabilities",
+    "objective": "1.3 Identificar princípios e práticas para IA responsável",
+    "what_it_tests": "Avaliar conceitos verdadeiros e falsos sobre o princípio de Justiça / Equidade (Fairness) em modelos de IA.",
+    "question": "PONTO DE INTERESSE (HOTSPOT)\n\nPara cada uma das afirmações a seguir sobre o princípio de Justiça / Equidade (Fairness), selecione Sim se a afirmação for verdadeira. Caso contrário, selecione Não.\nOBSERVAÇÃO: Cada seleção correta vale um ponto.",
+    "statements": [
+      {
+        "id": 1,
+        "text": "A equidade (fairness) pode ser alcançada concentrando-se exclusivamente em melhorar a precisão (acurácia) geral de um modelo de IA. (Fairness can be achieved by focusing solely on improving the overall accuracy of an AI model.)"
+      },
+      {
+        "id": 2,
+        "text": "Avaliar as saídas do sistema de IA para identificar e reduzir o viés entre grupos demográficos apoia a equidade (fairness). (Evaluating AI system outputs to identify and reduce bias across demographic groups supports fairness.)"
+      },
+      {
+        "id": 3,
+        "text": "Garantir a equidade (fairness) para um sistema de IA significa que todos os usuários sempre recebem exatamente a mesma saída do sistema. (Ensuring fairness for an AI system means that all users always receive the same output from the system.)"
+      }
+    ],
+    "correct_answer": {
+      "1": "No",
+      "2": "Yes",
+      "3": "No"
+    },
+    "official_rationale": "A equidade exige avaliar e mitigar vieses entre grupos demográficos. Focar apenas na acurácia geral pode mascarar disparidades contra grupos minoritários, e equidade não significa produzir uma saída idêntica para todos os usuários independentemente de seus dados.",
+    "explanation_why_correct": "• **Afirmação 1 (Não):** Um modelo pode ter alta acurácia global (ex.: 95%) e ainda assim falhar sistematicamente para um grupo minoritário que represente 5% da população.\n• **Afirmação 2 (Sim):** Analisar o desempenho e os resultados do modelo segmentados por grupos demográficos para identificar e mitigar vieses é a prática fundamental da **Equidade (Fairness)**.\n• **Afirmação 3 (Não):** Equidade significa aplicar critérios justos e imparciais a todos, e não retornar sempre a mesma resposta estática para qualquer pessoa (por exemplo, candidatos com perfis financeiros diferentes receberão análises de crédito diferentes, desde que baseadas em critérios legítimos e não discriminatórios).",
+    "explanation_why_incorrect": "Não confunda imparcialidade de critérios (Fairness) com saída estática idêntica para todas as entradas.",
+    "additional_reading": [
+      {
+        "title": "Princípios de IA Responsável: Justiça / Equidade",
+        "url": "https://learn.microsoft.com/training/modules/get-started-ai-fundamentals/5-understand-responsible-ai"
+      }
+    ]
+  },
+  {
+    "id": 29,
+    "type": "dropdown",
+    "category": "Implementar soluções de IA com o Microsoft Foundry",
+    "category_en": "Implement AI solutions with Microsoft Foundry",
+    "objective": "2.4 Implementar soluções de IA que analisam conteúdo usando o Foundry",
+    "what_it_tests": "Compreender que o processamento de conteúdo no Azure Content Understanding ocorre de forma assíncrona.",
+    "question": "PONTO DE INTERESSE (HOTSPOT)\n\nSelecione a resposta que completa corretamente a frase na Área de Resposta.",
+    "answer_area": {
+      "type": "sentence",
+      "prefix": "Quando o conteúdo é enviado para o Azure Content Understanding no Foundry Tools, a análise é ",
+      "suffix": "."
+    },
+    "options": [
+      {
+        "id": "A",
+        "text": "síncrona (synchronous)"
+      },
+      {
+        "id": "B",
+        "text": "assíncrona (asynchronous)"
+      },
+      {
+        "id": "C",
+        "text": "retornada apenas como texto simples não estruturado (returned only as unstructured plain text)"
+      },
+      {
+        "id": "D",
+        "text": "limitada ao processamento exclusivo de reconhecimento óptico de caracteres - OCR (limited to OCR-only processing)"
+      }
+    ],
+    "correct_answer": "B",
+    "official_rationale": "Quando o conteúdo é enviado ao Azure Content Understanding no Foundry Tools, a análise é processada de forma assíncrona (asynchronous), permitindo lidar com documentos, imagens, áudios e vídeos complexos sem bloquear o cliente.",
+    "explanation_why_correct": "A análise no **Azure Content Understanding** é **assíncrona (`asynchronous`)**: você inicia o trabalho de análise (por exemplo, com `begin_analyze`) e consulta o status ou aguarda o resultado via *polling* até que a extração estruturada seja concluída.",
+    "explanation_why_incorrect": "• **A (síncrona): Incorreta.** O processamento de arquivos multimodais e documentos extensos não é retornado instantaneamente na mesma chamada de submissão.\n• **C (apenas texto não estruturado): Incorreta.** O serviço retorna saídas altamente estruturadas em JSON seguindo o esquema do analisador.\n• **D (limitada apenas a OCR): Incorreta.** O Content Understanding vai muito além de OCR, suportando extração baseada em esquema, raciocínio generativo, áudio, vídeo e imagens.",
+    "additional_reading": [
+      {
+        "title": "Visão geral do Azure AI Content Understanding",
+        "url": "https://learn.microsoft.com/azure/ai-services/content-understanding/overview"
+      }
+    ]
+  },
+  {
+    "id": 30,
+    "type": "single",
+    "category": "Implementar soluções de IA com o Microsoft Foundry",
+    "category_en": "Implement AI solutions with Microsoft Foundry",
+    "objective": "2.1 Implementar aplicativos e agentes de IA generativa usando o Foundry",
+    "what_it_tests": "Identificar as informações essenciais (endpoint do modelo e credenciais de autenticação) necessárias para consumir um modelo implantado no Foundry a partir de um aplicativo.",
+    "question": "Você tem um projeto do Microsoft Foundry que contém uma implantação de um modelo de IA generativa.\nVocê testa o modelo usando o ambiente de testes (playground) do Foundry.\n\nVocê precisa desenvolver um aplicativo que envie solicitações para o modelo implantado.\n\nQuais informações o aplicativo deve incluir para chamar o modelo?",
+    "options": [
+      {
+        "id": "A",
+        "text": "O histórico de sessões do playground exportado"
+      },
+      {
+        "id": "B",
+        "text": "O conjunto de dados de treinamento do modelo"
+      },
+      {
+        "id": "C",
+        "text": "O nome de exibição do projeto Foundry"
+      },
+      {
+        "id": "D",
+        "text": "O endpoint do modelo e as credenciais de autenticação"
+      }
+    ],
+    "correct_answer": "D",
+    "official_rationale": "Para enviar solicitações de inferência a um modelo implantado no Microsoft Foundry a partir de um aplicativo cliente, é necessário configurar o endpoint do modelo (URL) e as credenciais de autenticação (chave de API ou token do Microsoft Entra ID).",
+    "explanation_why_correct": "Para que qualquer aplicativo externo se conecte e envie requisições ao modelo implantado no Microsoft Foundry, ele deve possuir **o endpoint do modelo (URL de destino) e as credenciais de autenticação** (como a *API Key* ou credencial do *Microsoft Entra ID*), além do identificador da implantação.",
+    "explanation_why_incorrect": "• **A: Incorreta.** O histórico do playground serve apenas para registro de testes manuais, não sendo requisito de conexão.\n• **B: Incorreta.** O modelo já está pré-treinado e implantado; o aplicativo cliente envia apenas prompts de inferência.\n• **C: Incorreta.** Apenas o nome de exibição do projeto não fornece o endereço de rede (endpoint) nem autorização para chamar a API.",
+    "additional_reading": [
+      {
+        "title": "Consumir modelos implantados no Microsoft Foundry em aplicativos",
+        "url": "https://learn.microsoft.com/azure/ai-studio/"
+      }
+    ]
+  }
+];
+
+if (typeof module !== 'undefined' && module.exports) {
+  module.exports = { SIMULADO_2_QUESTIONS };
+}

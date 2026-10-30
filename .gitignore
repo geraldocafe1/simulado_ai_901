@@ -1,0 +1,21 @@
+# Dependências e caches
+__pycache__/
+*.pyc
+.tempmediaStorage/
+.system_generated/
+
+# Arquivos pesados de mídia/documentos originais
+extracted_images/
+*.docx
+
+# Arquivos intermediários temporários de OCR/Debug
+all_questions_raw.json
+ocr_results.json
+check_*.py
+dump_*.py
+inspect_*.py
+summary_*.py
+list_*.py
+prepare_*.py
+analyze_*.py
+test_data.py

@@ -1,0 +1,373 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Simulado 2 (ExamTopics) Microsoft AI-901: Microsoft Azure AI Fundamentals (30 Questões)</title>
+  <link rel="stylesheet" href="../style.css">
+  <script>
+    window.DEFAULT_EXAM_ID = 'simulado2';
+  </script>
+</head>
+<body>
+
+  <!-- ========================================================================
+       TOP MICROSOFT HEADER
+       ======================================================================== -->
+  <header class="ms-header">
+    <div class="ms-header-brand">
+      <svg class="ms-logo-icon" viewBox="0 0 23 23">
+        <rect x="1" y="1" width="10" height="10" fill="#f25022"/>
+        <rect x="12" y="1" width="10" height="10" fill="#7fba00"/>
+        <rect x="1" y="12" width="10" height="10" fill="#00a4ef"/>
+        <rect x="12" y="12" width="10" height="10" fill="#ffb900"/>
+      </svg>
+      <div class="ms-header-titles">
+        <div class="ms-header-title">
+          <span id="headerMainTitle">Simulado ExamTopics AI-901</span>
+          <span class="ms-badge-beta" id="headerBadge">SIMULADO 2</span>
+        </div>
+        <div class="ms-header-sub" id="headerSubTitle">Exame AI-901: 30 Questões de Exame Traduzidas e Comentadas (PT-BR)</div>
+      </div>
+    </div>
+
+    <div class="ms-header-actions" style="flex-wrap: wrap;">
+      <!-- Seletor de Simulado (Simulado 1: 50Q vs Simulado 2: 30Q ExamTopics) -->
+      <div class="exam-switcher-group" role="tablist" aria-label="Selecionar Simulado">
+        <button id="btnSelectSimulado1" class="exam-switch-btn" data-exam="simulado1" title="Simulado 1: Avaliação Oficial Microsoft Learn (50 Questões)">
+          <span>📘</span> Simulado 1 (50Q)
+        </button>
+        <button id="btnSelectSimulado2" class="exam-switch-btn active" data-exam="simulado2" title="Simulado 2: Questões Extraídas ExamTopics AI-901 (30 Questões)">
+          <span>📙</span> Simulado 2 (30Q)
+        </button>
+      </div>
+
+      <!-- Botão Compartilhar Link Direto -->
+      <button id="btnCopyShareLink" class="btn-copy-link" title="Copiar link direto deste simulado para compartilhar">
+        <span id="copyLinkIcon">🔗</span>
+        <span id="copyLinkText">Copiar Link</span>
+      </button>
+
+      <!-- Mode Switcher -->
+      <button id="modeToggleBtn" class="mode-badge mode-study" title="Alternar entre modo estudo com feedback imediato e simulado cronometrado">
+        <span id="modeIcon">💡</span> Modo Estudo
+      </button>
+
+      <!-- Timer -->
+      <div class="timer-box" id="timerBox">
+        <span>⏱️</span>
+        <span id="timerDisplay">00:00</span>
+      </div>
+
+      <!-- Alternador Modo Dia / Noite (Dark Mode) -->
+      <button id="themeToggleBtn" class="theme-toggle" title="Alternar entre Modo Dia (Claro) e Modo Noite (Escuro)">
+        <span id="themeIcon" class="theme-icon">☀️</span>
+        <span id="themeText">Modo Dia</span>
+      </button>
+
+      <!-- Botão Ranking da Turma -->
+      <button id="btnHeaderLeaderboard" class="theme-toggle" title="Ver Ranking Oficial da Turma">
+        <span>🏆</span>
+        <span>Ranking</span>
+      </button>
+    </div>
+  </header>
+
+  <!-- ========================================================================
+       PROGRESS STRIP
+       ======================================================================== -->
+  <div class="ms-progress-strip" id="progressStrip">
+    <div class="progress-info">
+      <span class="progress-label">PROGRESS</span>
+      <div class="progress-track">
+        <div class="progress-fill" id="progressFill" style="width: 3.3%;"></div>
+      </div>
+      <span class="progress-text" id="progressText">Question Progress (1/30)</span>
+    </div>
+
+    <div>
+      <button id="btnOpenReview" class="btn-review-screen">
+        <span>📋</span> Tela de Revisão
+      </button>
+    </div>
+  </div>
+
+  <!-- ========================================================================
+       MAIN APP VIEWS
+       ======================================================================== -->
+  <main class="ms-main-content">
+
+    <!-- 1. EXAM QUESTION VIEW -->
+    <div id="questionView" class="active">
+      <div class="question-card" id="questionCard">
+        <!-- Rendered dynamically by app.js -->
+      </div>
+    </div>
+
+    <!-- 2. REVIEW SCREEN VIEW -->
+    <div id="reviewView" class="review-screen-view">
+      <div class="review-instructions-card">
+        <h2 class="review-instructions-title">Tela de Revisão (Review Screen)</h2>
+        <ul class="review-instructions-list">
+          <li>Abaixo está uma tabela mostrando todas as <span id="reviewTotalQuestionsText">30</span> questões do exame.</li>
+          <li>Selecione qualquer questão da tabela para ir diretamente até ela.</li>
+          <li>Para retornar ao exame a qualquer momento, clique no botão de retorno.</li>
+          <li>Quando estiver pronto para concluir, selecione o botão <strong>Finalizar Exame</strong> para gerar seu Relatório de Desempenho.</li>
+        </ul>
+      </div>
+
+      <div class="review-filters-bar">
+        <div class="filter-pills">
+          <button class="filter-pill active" data-filter="all">Todas (<span id="countAllReview">30</span>)</button>
+          <button class="filter-pill" data-filter="answered">Respondidas (<span id="countAnswered">0</span>)</button>
+          <button class="filter-pill" data-filter="unanswered">Não Respondidas (<span id="countUnanswered">30</span>)</button>
+          <button class="filter-pill" data-filter="flagged">Marcadas para Revisão (<span id="countFlagged">0</span>)</button>
+        </div>
+
+        <button id="btnFinishExamFromReview" class="btn-ms btn-ms-primary">
+          <span>🏁</span> Finalizar Exame
+        </button>
+      </div>
+
+      <div class="review-questions-table-card">
+        <table class="review-table">
+          <thead>
+            <tr>
+              <th style="width: 80px;">Questão</th>
+              <th style="width: 140px;">Status</th>
+              <th>Resumo / Enunciado</th>
+              <th style="width: 100px; text-align: center;">Revisão</th>
+            </tr>
+          </thead>
+          <tbody id="reviewTableBody">
+            <!-- Rendered by app.js -->
+          </tbody>
+        </table>
+      </div>
+    </div>
+
+    <!-- 3. SCORE REPORT VIEW -->
+    <div id="scoreReportView" class="score-report-view">
+      <div class="score-summary-card">
+        <h1 class="score-title">Score Report</h1>
+        <div class="score-subtitle" id="scoreReportSubtitle">Simulado 2 (ExamTopics) for Exam AI-901: Microsoft Azure AI Fundamentals</div>
+
+        <div id="scoreBadgeContainer">
+          <!-- Pass / Fail Badge -->
+        </div>
+
+        <div class="score-circle-container">
+          <div class="score-metric-box">
+            <div class="score-number" id="finalScorePercent">0%</div>
+            <div class="score-label">Sua Pontuação</div>
+          </div>
+          <div class="score-metric-box">
+            <div class="score-number" style="color: var(--text-muted);">80%</div>
+            <div class="score-label">Pontuação Alvo (Target Score)</div>
+          </div>
+          <div class="score-metric-box">
+            <div class="score-number" id="finalScoreCount" style="color: var(--ms-blue-primary);">0 / 30</div>
+            <div class="score-label">Questões Corretas</div>
+          </div>
+        </div>
+
+        <!-- Meta e Dica Oficial -->
+        <div class="score-comparison-banner">
+          <span>🎯</span>
+          <span><strong>Nota de Aprovação Oficial da Microsoft:</strong> 80% (<span id="targetCorrectText">24 acertos de 30</span>). Registre seu nome no ranking abaixo para disputar o topo da turma!</span>
+        </div>
+      </div>
+
+      <!-- Performance by section -->
+      <div class="section-performance-card">
+        <h3 style="margin-bottom: 1rem; font-size: 1.15rem;">Desempenho por Seção do Exame</h3>
+        
+        <div class="section-bar-item">
+          <div class="section-bar-header">
+            <span>Identificar conceitos e recursos de IA (40-45%)</span>
+            <span id="sec1Percent">0%</span>
+          </div>
+          <div class="section-bar-track">
+            <div class="section-bar-fill" id="sec1Fill" style="width: 0%; background-color: var(--ms-blue-primary);"></div>
+          </div>
+        </div>
+
+        <div class="section-bar-item">
+          <div class="section-bar-header">
+            <span>Implementar soluções de IA com o Microsoft Foundry (50-55%)</span>
+            <span id="sec2Percent">0%</span>
+          </div>
+          <div class="section-bar-track">
+            <div class="section-bar-fill" id="sec2Fill" style="width: 0%; background-color: #2b88d8;"></div>
+          </div>
+        </div>
+      </div>
+
+      <!-- ====================================================================
+           LEADERBOARD / RANKING DA TURMA (COMPETIÇÃO AO VIVO)
+           ==================================================================== -->
+      <div class="leaderboard-card">
+        <div class="leaderboard-card-header">
+          <div style="display: flex; align-items: center; gap: 12px;">
+            <span style="font-size: 2.2rem;">🏆</span>
+            <div>
+              <h3 style="margin: 0; font-size: 1.3rem;" id="leaderboardTitle">Ranking Geral da Turma - Simulado 2 (30Q)</h3>
+              <p style="margin: 3px 0 0; font-size: 0.9rem; color: var(--text-secondary);">
+                Critério de classificação: Maior pontuação (%) e menor tempo de realização ⏱️
+              </p>
+            </div>
+          </div>
+          <button id="btnRefreshLeaderboard" class="btn-ms btn-ms-secondary" style="font-size: 0.85rem; padding: 6px 12px;">
+            <span>🔄</span> Atualizar Placar
+          </button>
+        </div>
+
+        <!-- Formulário de Registro do Aluno -->
+        <div id="leaderboardSubmitSection" class="leaderboard-submit-box">
+          <p style="font-size: 0.95rem; font-weight: 700; margin-bottom: 8px;">
+            🎓 Quer registrar seu nome no ranking da turma?
+          </p>
+          <p style="font-size: 0.88rem; color: var(--text-secondary); margin-bottom: 12px;">
+            Digite seu nome completo para salvar sua pontuação e tempo de prova no placar geral:
+          </p>
+          <div class="leaderboard-input-row">
+            <input type="text" id="inputStudentName" class="ms-text-input" placeholder="Digite seu Nome Completo (ex: Mariana Souza)..." maxlength="40" />
+            <button id="btnSubmitToLeaderboard" class="btn-ms btn-ms-primary">
+              <span>🚀</span> Publicar meu Resultado
+            </button>
+          </div>
+          <div id="leaderboardStatusMsg"></div>
+        </div>
+
+        <div id="leaderboardUserRankResult" style="display: none;"></div>
+
+        <!-- Podium Top 3 -->
+        <div id="leaderboardPodiumContainer" class="podium-container"></div>
+
+        <!-- Tabela do Ranking -->
+        <div class="leaderboard-table-wrapper">
+          <table class="leaderboard-table">
+            <thead>
+              <tr>
+                <th style="width: 75px; text-align: center;">Posição</th>
+                <th>Aluno</th>
+                <th style="text-align: center;">Acertos</th>
+                <th style="text-align: center;">Nota</th>
+                <th style="text-align: center;">Tempo</th>
+                <th style="text-align: center;">Data</th>
+              </tr>
+            </thead>
+            <tbody id="leaderboardTableBody"></tbody>
+          </table>
+        </div>
+      </div>
+
+      <!-- Detailed Review with Filter -->
+      <div class="question-card">
+        <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 1.5rem; flex-wrap: wrap; gap: 10px;">
+          <h3>Gabarito Completo e Comentários Questão por Questão</h3>
+          <div class="filter-pills">
+            <button class="filter-pill active" id="btnFilterReportAll">Todas (<span id="reportAllCount">30</span>)</button>
+            <button class="filter-pill" id="btnFilterReportWrong">Apenas Erros (<span id="reportWrongCount">0</span>)</button>
+            <button class="filter-pill" id="btnFilterReportRight">Apenas Acertos (<span id="reportRightCount">0</span>)</button>
+          </div>
+        </div>
+
+        <div id="scoreReportQuestionsList">
+          <!-- Rendered by app.js -->
+        </div>
+
+        <div style="margin-top: 2rem; display: flex; justify-content: center; gap: 16px;">
+          <button id="btnRestartExam" onclick="window.restartExamDirect()" class="btn-ms btn-ms-primary">
+            <span>🔄</span> Refazer Simulado
+          </button>
+          <button onclick="window.print()" class="btn-ms btn-ms-secondary">
+            <span>🖨️</span> Imprimir / Salvar PDF
+          </button>
+        </div>
+      </div>
+    </div>
+
+  </main>
+
+  <!-- ========================================================================
+       MODAL DIALOG (ARE YOU SURE TO FINISH)
+       ======================================================================== -->
+  <div class="modal-overlay" id="finishModal">
+    <div class="modal-box">
+      <h3 class="modal-title">Tem certeza que deseja finalizar?</h3>
+      <p class="modal-text">
+        Ao selecionar <strong>Sim</strong>, você encerrará esta seção do exame e não poderá mais alterar suas respostas. Seu relatório oficial de pontuação e o gabarito comentado serão gerados imediatamente.
+      </p>
+      <div class="modal-actions">
+        <button id="btnCancelModal" class="btn-ms btn-ms-secondary">Cancelar</button>
+        <button id="btnConfirmFinish" class="btn-ms btn-ms-primary">Sim, Finalizar Exame</button>
+      </div>
+    </div>
+  </div>
+
+  <!-- ========================================================================
+       MODAL DIALOG (REINICIAR SIMULADO)
+       ======================================================================== -->
+  <div class="modal-overlay" id="restartModal">
+    <div class="modal-box">
+      <h3 class="modal-title">Reiniciar o Simulado?</h3>
+      <p class="modal-text">
+        Tem certeza que deseja reiniciar o simulado? Suas respostas atuais serão limpas e o cronômetro será zerado para você começar uma nova tentativa do zero.
+      </p>
+      <div class="modal-actions">
+        <button id="btnCancelRestartModal" class="btn-ms btn-ms-secondary">Cancelar</button>
+        <button id="btnConfirmRestartModal" class="btn-ms btn-ms-primary">Sim, Reiniciar</button>
+      </div>
+    </div>
+  </div>
+
+  <!-- ========================================================================
+       MODAL DIALOG (RANKING GERAL DA TURMA)
+       ======================================================================== -->
+  <div class="modal-overlay" id="leaderboardModal">
+    <div class="modal-box leaderboard-modal-box">
+      <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 1rem; border-bottom: 1px solid var(--border-color); padding-bottom: 0.75rem;">
+        <div style="display: flex; align-items: center; gap: 10px;">
+          <span style="font-size: 1.8rem;">🏆</span>
+          <div>
+            <h3 style="margin: 0; font-size: 1.25rem;" id="modalLeaderboardTitle">Ranking da Turma - AI-901 (Simulado 2)</h3>
+            <span style="font-size: 0.82rem; color: var(--text-secondary);">Competição: Mais acertos no menor tempo</span>
+          </div>
+        </div>
+        <button id="btnCloseLeaderboardModal" class="btn-ms btn-ms-secondary" style="padding: 4px 10px; font-size: 1rem;">✕</button>
+      </div>
+
+      <!-- Podium Top 3 inside Modal -->
+      <div id="modalPodiumContainer" class="podium-container"></div>
+
+      <div class="leaderboard-table-wrapper" style="max-height: 380px; overflow-y: auto;">
+        <table class="leaderboard-table">
+          <thead>
+            <tr>
+              <th style="width: 75px; text-align: center;">Posição</th>
+              <th>Aluno</th>
+              <th style="text-align: center;">Acertos</th>
+              <th style="text-align: center;">Nota</th>
+              <th style="text-align: center;">Tempo</th>
+            </tr>
+          </thead>
+          <tbody id="modalLeaderboardTableBody"></tbody>
+        </table>
+      </div>
+
+      <div style="margin-top: 1rem; display: flex; justify-content: space-between; align-items: center;">
+        <span id="leaderboardSyncStatus" style="font-size: 0.8rem; color: var(--text-muted);">🟢 Sincronizado</span>
+        <button id="btnModalClose" class="btn-ms btn-ms-primary">Fechar</button>
+      </div>
+    </div>
+  </div>
+
+  <!-- Scripts -->
+  <script src="../simulado_data.js"></script>
+  <script src="../simulado2_data.js"></script>
+  <script src="../firebase_config.js"></script>
+  <script src="../leaderboard.js"></script>
+  <script src="../app.js"></script>
+</body>
+</html>
