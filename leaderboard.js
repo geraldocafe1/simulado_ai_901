@@ -5,32 +5,49 @@
 (function () {
   let activeExamId = 'simulado1';
 
+  const EXAM_META = {
+    simulado2: { label: 'AI-901 Simulado 2', total: 30, collection: 'leaderboard_ai901_simulado2' },
+    az900_1: { label: 'AZ-900 Simulado 1', total: 73, collection: 'leaderboard_az900_simulado1' },
+    dp900_1: { label: 'DP-900 Simulado 1', total: 32, collection: 'leaderboard_dp900_simulado1' },
+    dp900_2: { label: 'DP-900 Prova Final', total: 42, collection: 'leaderboard_dp900_simulado2' },
+    dp900_3: { label: 'DP-900 Simulado 3', total: 32, collection: 'leaderboard_dp900_simulado3' },
+    aws_1: { label: 'AWS CLF-C02 Simulado 1', total: 65, collection: 'leaderboard_aws_simulado1' },
+    aws_2: { label: 'AWS CLF-C02 Simulado 2', total: 50, collection: 'leaderboard_aws_simulado2' },
+    aws_3: { label: 'AWS CLF-C02 Simulado 3', total: 65, collection: 'leaderboard_aws_simulado3' },
+    gcp_1: { label: 'Google Cloud ACE Simulado 1', total: 50, collection: 'leaderboard_gcp_simulado1' },
+    gcp_3: { label: 'Google Cloud ACE Simulado 3', total: 50, collection: 'leaderboard_gcp_simulado3' },
+    gcp_4: { label: 'Google Cloud ACE Simulado 4', total: 50, collection: 'leaderboard_gcp_simulado4' }
+  };
+
   function getStorageKeys(examId) {
-    if (examId === 'simulado2') {
+    if (EXAM_META[examId]) {
+      const m = EXAM_META[examId];
+      const nearScore = Math.max(1, m.total - 1);
+      const nearPct = Math.round((nearScore / m.total) * 100);
       return {
-        localStorageKey: 'ms_ai901_simulado2_leaderboard_cache',
-        submittedKey: 'ms_ai901_simulado2_last_submission_id',
-        collectionName: 'leaderboard_ai901_simulado2',
+        localStorageKey: `ms_${examId}_leaderboard_cache`,
+        submittedKey: `ms_${examId}_last_submission_id`,
+        collectionName: m.collection,
         seedData: [
           {
-            id: 'seed_sim2_1',
-            name: 'Gabarito Oficial ExamTopics (Referência)',
-            score: 30,
-            total: 30,
+            id: `seed_${examId}_1`,
+            name: `Gabarito Oficial ${m.label} (Referência)`,
+            score: m.total,
+            total: m.total,
             percentage: 100,
-            timeSeconds: 540,
-            timeFormatted: '9m 00s',
+            timeSeconds: 780,
+            timeFormatted: '13m 00s',
             date: '2026-10-30T10:00:00.000Z',
             isSeed: true
           },
           {
-            id: 'seed_sim2_2',
-            name: 'Instrutor Café (Microsoft Certified)',
-            score: 29,
-            total: 30,
-            percentage: 97,
-            timeSeconds: 615,
-            timeFormatted: '10m 15s',
+            id: `seed_${examId}_2`,
+            name: 'Instrutor Café (Cloud & AI Certified)',
+            score: nearScore,
+            total: m.total,
+            percentage: nearPct,
+            timeSeconds: 915,
+            timeFormatted: '15m 15s',
             date: '2026-10-30T10:15:00.000Z',
             isSeed: true
           }
@@ -371,7 +388,7 @@
   }
 
   function setActiveExam(examId) {
-    if (examId === 'simulado1' || examId === 'simulado2') {
+    if (examId === 'simulado1' || EXAM_META[examId]) {
       activeExamId = examId;
       fetchLeaderboard();
     }

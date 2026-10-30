@@ -36,6 +36,156 @@ document.addEventListener('DOMContentLoaded', () => {
       leaderboardTitle: 'Ranking Geral da Turma - AI-901 Simulado 2 (30Q ExamTopics)',
       modalLeaderboardTitle: 'Ranking da Turma - AI-901 (Simulado 2 - 30Q)',
       questions: typeof SIMULADO_2_QUESTIONS !== 'undefined' ? SIMULADO_2_QUESTIONS : []
+    },
+    az900_1: {
+      id: 'az900_1',
+      courseId: 'az-900',
+      courseCode: 'AZ-900',
+      shortName: 'Simulado 1 AZ-900 (73Q)',
+      title: 'Simulado 1: Microsoft AZ-900 (Quizizz 2024 - 73 Questões)',
+      badge: 'AZ-900 (73Q)',
+      subtitle: 'Exame AZ-900: Microsoft Azure Fundamentals (73 Questões Comentadas PT-BR)',
+      description: 'Bateria completa de 73 questões cobrindo Conceitos da Nuvem (IaaS, PaaS, SaaS, CapEx/OpEx), Arquitetura e Serviços do Azure (VMs, Redes, Armazenamento, Entra ID) e Governança e Gerenciamento (RBAC, Locks, Policy, TCO, Advisor).',
+      suggestedTime: '60 min',
+      reportSubtitle: 'Simulado 1 (Quizizz 2024 - 02) for Exam AZ-900: Microsoft Azure Fundamentals (73 Questões)',
+      leaderboardTitle: 'Ranking Geral da Turma - AZ-900 Simulado 1 (73Q)',
+      modalLeaderboardTitle: 'Ranking da Turma - AZ-900 (Simulado 1 - 73Q)',
+      questions: typeof AZ900_SIMULADO_1_QUESTIONS !== 'undefined' ? AZ900_SIMULADO_1_QUESTIONS : []
+    },
+    dp900_1: {
+      id: 'dp900_1',
+      courseId: 'dp-900',
+      courseCode: 'DP-900',
+      shortName: 'Simulado 1 (32Q)',
+      title: 'Simulado 1: Microsoft DP-900 (Simulado 02 - 32 Questões)',
+      badge: 'DP-900 SIM 1 (32Q)',
+      subtitle: 'Exame DP-900: Microsoft Azure Data Fundamentals (32 Questões + Drag & Drop)',
+      description: 'Avaliação prática do DP-900 incluindo questões interativas de Arrastar e Soltar, Azure SQL, Cosmos DB, Armazenamento do Azure, Data Factory e análise de dados.',
+      suggestedTime: '35 min',
+      reportSubtitle: 'Simulado 1 for Exam DP-900: Microsoft Azure Data Fundamentals (32 Questões)',
+      leaderboardTitle: 'Ranking Geral da Turma - DP-900 Simulado 1 (32Q)',
+      modalLeaderboardTitle: 'Ranking da Turma - DP-900 (Simulado 1 - 32Q)',
+      questions: typeof DP900_SIMULADO_1_QUESTIONS !== 'undefined' ? DP900_SIMULADO_1_QUESTIONS : []
+    },
+    dp900_2: {
+      id: 'dp900_2',
+      courseId: 'dp-900',
+      courseCode: 'DP-900',
+      shortName: 'Prova Final (42Q)',
+      title: 'Simulado 2: Prova Final Microsoft DP-900 (42 Questões)',
+      badge: 'PROVA FINAL (42Q)',
+      subtitle: 'Exame DP-900: Prova Final Microsoft Azure Data Fundamentals (42 Questões)',
+      description: 'Prova final completa de 42 questões cobrindo bancos de dados relacionais (SQL Database, Managed Instance, SQL VM), NoSQL (Cosmos DB, Tabelas, Blobs), replicação (GRS, RA-GRS) e processamento em tempo real.',
+      suggestedTime: '45 min',
+      reportSubtitle: 'Prova Final for Exam DP-900: Microsoft Azure Data Fundamentals (42 Questões)',
+      leaderboardTitle: 'Ranking Geral da Turma - DP-900 Prova Final (42Q)',
+      modalLeaderboardTitle: 'Ranking da Turma - DP-900 (Prova Final - 42Q)',
+      questions: typeof DP900_SIMULADO_2_QUESTIONS !== 'undefined' ? DP900_SIMULADO_2_QUESTIONS : []
+    },
+    dp900_3: {
+      id: 'dp900_3',
+      courseId: 'dp-900',
+      courseCode: 'DP-900',
+      shortName: 'Simulado 3 (32Q)',
+      title: 'Simulado 3: Microsoft DP-900 (Simulado 03 - 32 Questões)',
+      badge: 'DP-900 SIM 3 (32Q)',
+      subtitle: 'Exame DP-900: Microsoft Azure Data Fundamentals (32 Questões + Drag & Drop)',
+      description: 'Bateria avançada do DP-900 com questões de consultas SQL (GROUP BY, AVG), segurança de banco de dados (Firewall, Autenticação, Criptografia), ELT no Data Warehouse e visualizações do Power BI.',
+      suggestedTime: '35 min',
+      reportSubtitle: 'Simulado 3 for Exam DP-900: Microsoft Azure Data Fundamentals (32 Questões)',
+      leaderboardTitle: 'Ranking Geral da Turma - DP-900 Simulado 3 (32Q)',
+      modalLeaderboardTitle: 'Ranking da Turma - DP-900 (Simulado 3 - 32Q)',
+      questions: typeof DP900_SIMULADO_3_QUESTIONS !== 'undefined' ? DP900_SIMULADO_3_QUESTIONS : []
+    },
+    aws_1: {
+      id: 'aws_1',
+      courseId: 'aws-clf-c02',
+      courseCode: 'CLF-C02',
+      shortName: 'Simulado 1 (65Q)',
+      title: 'Simulado 1: AWS Certified Cloud Practitioner - Simulado 01 (65Q)',
+      badge: 'AWS SIM 1 (65Q)',
+      subtitle: 'Exame AWS CLF-C02: AWS Certified Cloud Practitioner (65 Questões Comentadas)',
+      description: 'Simulado completo de 65 questões no padrão oficial da prova AWS Cloud Practitioner (CLF-C02), cobrindo EC2, S3, VPC, IAM, RDS, CloudFront, Well-Architected Framework, faturamento e suporte.',
+      suggestedTime: '60 min',
+      reportSubtitle: 'Simulado 01 for Exam AWS CLF-C02: AWS Certified Cloud Practitioner (65 Questões)',
+      leaderboardTitle: 'Ranking Geral da Turma - AWS CLF-C02 Simulado 1 (65Q)',
+      modalLeaderboardTitle: 'Ranking da Turma - AWS CLF-C02 (Simulado 1 - 65Q)',
+      questions: typeof AWS_SIMULADO_1_QUESTIONS !== 'undefined' ? AWS_SIMULADO_1_QUESTIONS : []
+    },
+    aws_2: {
+      id: 'aws_2',
+      courseId: 'aws-clf-c02',
+      courseCode: 'CLF-C02',
+      shortName: 'Simulado 2 (50Q)',
+      title: 'Simulado 2: AWS Cloud Practitioner 1.1 (50 Questões)',
+      badge: 'AWS SIM 2 (50Q)',
+      subtitle: 'Exame AWS CLF-C02: AWS Cloud Practitioner 1.1 (50 Questões Comentadas)',
+      description: 'Bateria de 50 questões focada no Modelo de Responsabilidade Compartilhada da AWS, segurança, arquiteturas resilientes, elasticidade, serviços gerenciados e otimização de custos.',
+      suggestedTime: '45 min',
+      reportSubtitle: 'Simulado 2 (1.1) for Exam AWS CLF-C02: AWS Certified Cloud Practitioner (50 Questões)',
+      leaderboardTitle: 'Ranking Geral da Turma - AWS CLF-C02 Simulado 2 (50Q)',
+      modalLeaderboardTitle: 'Ranking da Turma - AWS CLF-C02 (Simulado 2 - 50Q)',
+      questions: typeof AWS_SIMULADO_2_QUESTIONS !== 'undefined' ? AWS_SIMULADO_2_QUESTIONS : []
+    },
+    aws_3: {
+      id: 'aws_3',
+      courseId: 'aws-clf-c02',
+      courseCode: 'CLF-C02',
+      shortName: 'Simulado 3 (65Q)',
+      title: 'Simulado 3: AWS Certified Cloud Practitioner - Simulado 02 (65Q)',
+      badge: 'AWS SIM 3 (65Q)',
+      subtitle: 'Exame AWS CLF-C02: AWS Certified Cloud Practitioner - Simulado 02 (65 Questões)',
+      description: 'Segunda bateria completa de 65 questões para a certificação AWS Cloud Practitioner, cobrindo cenários práticos de S3, Route 53, Auto Scaling, CloudTrail, CloudWatch, Trusted Advisor e AWS Organizations.',
+      suggestedTime: '60 min',
+      reportSubtitle: 'Simulado 02 for Exam AWS CLF-C02: AWS Certified Cloud Practitioner (65 Questões)',
+      leaderboardTitle: 'Ranking Geral da Turma - AWS CLF-C02 Simulado 3 (65Q)',
+      modalLeaderboardTitle: 'Ranking da Turma - AWS CLF-C02 (Simulado 3 - 65Q)',
+      questions: typeof AWS_SIMULADO_3_QUESTIONS !== 'undefined' ? AWS_SIMULADO_3_QUESTIONS : []
+    },
+    gcp_1: {
+      id: 'gcp_1',
+      courseId: 'gcp-ace',
+      courseCode: 'GCP-ACE',
+      shortName: 'Simulado 1 (50Q)',
+      title: 'Simulado 1: Google Cloud Associate Cloud Engineer (50 Questões)',
+      badge: 'GCP SIM 1 (50Q)',
+      subtitle: 'Exame GCP-ACE: Google Cloud Associate Cloud Engineer — Simulado 1 (50Q PT-BR)',
+      description: 'Primeiro simulado completo de 50 questões traduzidas e comentadas em PT-BR para a certificação Google Cloud Associate Cloud Engineer, cobrindo Compute Engine, GKE, IAM, gcloud CLI, VPC e Cloud Storage.',
+      suggestedTime: '50 min',
+      reportSubtitle: 'Simulado 1 for Google Cloud Associate Cloud Engineer (50 Questões)',
+      leaderboardTitle: 'Ranking Geral da Turma - Google Cloud ACE Simulado 1 (50Q)',
+      modalLeaderboardTitle: 'Ranking da Turma - Google Cloud ACE (Simulado 1 - 50Q)',
+      questions: typeof GCP_SIMULADO_1_QUESTIONS !== 'undefined' ? GCP_SIMULADO_1_QUESTIONS : []
+    },
+    gcp_3: {
+      id: 'gcp_3',
+      courseId: 'gcp-ace',
+      courseCode: 'GCP-ACE',
+      shortName: 'Simulado 3 (50Q)',
+      title: 'Simulado 3: Google Cloud Associate Cloud Engineer (50 Questões)',
+      badge: 'GCP SIM 3 (50Q)',
+      subtitle: 'Exame GCP-ACE: Google Cloud Associate Cloud Engineer — Simulado 3 (50Q PT-BR)',
+      description: 'Bateria de 50 questões de cenários técnicos do Google Cloud (Shielded VMs, Preemptible VMs, Cloud Run, App Engine, BigQuery, Cloud SQL, Cloud Pub/Sub, Cloud Monitoring e Kubernetes Engine).',
+      suggestedTime: '50 min',
+      reportSubtitle: 'Simulado 3 for Google Cloud Associate Cloud Engineer (50 Questões)',
+      leaderboardTitle: 'Ranking Geral da Turma - Google Cloud ACE Simulado 3 (50Q)',
+      modalLeaderboardTitle: 'Ranking da Turma - Google Cloud ACE (Simulado 3 - 50Q)',
+      questions: typeof GCP_SIMULADO_3_QUESTIONS !== 'undefined' ? GCP_SIMULADO_3_QUESTIONS : []
+    },
+    gcp_4: {
+      id: 'gcp_4',
+      courseId: 'gcp-ace',
+      courseCode: 'GCP-ACE',
+      shortName: 'Simulado 4 (50Q)',
+      title: 'Simulado 4: Google Cloud Associate Cloud Engineer (50 Questões)',
+      badge: 'GCP SIM 4 (50Q)',
+      subtitle: 'Exame GCP-ACE: Google Cloud Associate Cloud Engineer — Simulado 4 (50Q PT-BR)',
+      description: 'Quarto simulado completo de 50 questões traduzidas e comentadas para o exame Associate Cloud Engineer, abordando regras de firewall VPC, Cloud Billing, Service Accounts, Cloud Spanner, Bigtable e Deployment Manager.',
+      suggestedTime: '50 min',
+      reportSubtitle: 'Simulado 4 for Google Cloud Associate Cloud Engineer (50 Questões)',
+      leaderboardTitle: 'Ranking Geral da Turma - Google Cloud ACE Simulado 4 (50Q)',
+      modalLeaderboardTitle: 'Ranking da Turma - Google Cloud ACE (Simulado 4 - 50Q)',
+      questions: typeof GCP_SIMULADO_4_QUESTIONS !== 'undefined' ? GCP_SIMULADO_4_QUESTIONS : []
     }
   };
 
@@ -58,9 +208,9 @@ document.addEventListener('DOMContentLoaded', () => {
       provider: 'microsoft',
       providerName: '🟦 Microsoft Azure',
       accent: '#0078d4',
-      status: 'soon',
+      status: 'available',
       description: 'Conceitos de nuvem, arquitetura e serviços principais do Azure (Computação, Rede, Armazenamento), segurança e governança.',
-      exams: []
+      exams: ['az900_1']
     },
     {
       id: 'dp-900',
@@ -69,9 +219,9 @@ document.addEventListener('DOMContentLoaded', () => {
       provider: 'microsoft',
       providerName: '🟦 Microsoft Azure',
       accent: '#005a9e',
-      status: 'soon',
+      status: 'available',
       description: 'Conceitos fundamentais de bancos de dados relacionais e não relacionais, workloads transacionais e análises no Microsoft Azure.',
-      exams: []
+      exams: ['dp900_1', 'dp900_2', 'dp900_3']
     },
     {
       id: 'aws-clf-c02',
@@ -80,9 +230,9 @@ document.addEventListener('DOMContentLoaded', () => {
       provider: 'aws',
       providerName: '🟧 Amazon Web Services',
       accent: '#ff9900',
-      status: 'soon',
+      status: 'available',
       description: 'Fundamentos da nuvem AWS, infraestrutura global, responsabilidade compartilhada, segurança, EC2, S3, RDS e faturamento.',
-      exams: []
+      exams: ['aws_1', 'aws_2', 'aws_3']
     },
     {
       id: 'gcp-ace',
@@ -91,9 +241,9 @@ document.addEventListener('DOMContentLoaded', () => {
       provider: 'google',
       providerName: '🟨 Google Cloud Platform',
       accent: '#4285f4',
-      status: 'soon',
+      status: 'available',
       description: 'Implantação de aplicativos, monitoramento de operações e gerenciamento de soluções corporativas no Google Cloud Engine & GKE.',
-      exams: []
+      exams: ['gcp_1', 'gcp_3', 'gcp_4']
     }
   ];
 
@@ -108,12 +258,18 @@ document.addEventListener('DOMContentLoaded', () => {
       return { view: 'lobby', examId: 'simulado2' };
     }
     const params = new URLSearchParams(window.location.search);
-    const simParam = params.get('simulado') || params.get('exam');
+    const simParam = (params.get('simulado') || params.get('exam') || '').toLowerCase();
     if (simParam === '2' || simParam === 'simulado2') {
       return { view: 'lobby', examId: 'simulado2' };
     }
     if (simParam === '1' || simParam === 'simulado1') {
       return { view: 'lobby', examId: 'simulado1' };
+    }
+    if (simParam === 'az900' || simParam === 'az-900' || simParam === 'az900_1') {
+      return { view: 'lobby', examId: 'az900_1' };
+    }
+    if (EXAMS_CONFIG[simParam]) {
+      return { view: 'lobby', examId: simParam };
     }
     if (window.location.pathname.toLowerCase().includes('/simulado2')) {
       return { view: 'lobby', examId: 'simulado2' };
@@ -123,12 +279,16 @@ document.addEventListener('DOMContentLoaded', () => {
 
   const initialRoute = detectInitialRoute();
   let currentExamId = initialRoute.examId;
+  if (EXAMS_CONFIG[currentExamId]) {
+    selectedCourseId = EXAMS_CONFIG[currentExamId].courseId;
+  }
   let activeQuestions = EXAMS_CONFIG[currentExamId].questions;
   let totalQuestions = activeQuestions.length;
 
   // Per-exam state storage
-  const examStates = {
-    simulado1: {
+  const examStates = {};
+  Object.keys(EXAMS_CONFIG).forEach(examKey => {
+    examStates[examKey] = {
       currentQuestionIndex: 0,
       userAnswers: {},
       flaggedQuestions: new Set(),
@@ -136,22 +296,9 @@ document.addEventListener('DOMContentLoaded', () => {
       timerSeconds: 0,
       attemptCount: 1,
       failedInPreviousAttempt: new Set()
-    },
-    simulado2: {
-      currentQuestionIndex: 0,
-      userAnswers: {},
-      flaggedQuestions: new Set(),
-      solutionRevealed: {},
-      timerSeconds: 0,
-      attemptCount: 1,
-      failedInPreviousAttempt: new Set()
-    }
-  };
-
-  // Load attempt history from sessionStorage
-  ['simulado1', 'simulado2'].forEach(examKey => {
+    };
     try {
-      const prefix = examKey === 'simulado1' ? 'ai901' : 'ai901_sim2';
+      const prefix = examKey === 'simulado1' ? 'ai901' : (examKey === 'simulado2' ? 'ai901_sim2' : examKey);
       examStates[examKey].attemptCount = parseInt(sessionStorage.getItem(`${prefix}_attempt_count`) || '1', 10);
       const savedFailed = JSON.parse(sessionStorage.getItem(`${prefix}_failed_questions`) || '[]');
       savedFailed.forEach(id => examStates[examKey].failedInPreviousAttempt.add(id));
@@ -354,9 +501,29 @@ document.addEventListener('DOMContentLoaded', () => {
     if (reportAllCount) reportAllCount.textContent = String(totalQuestions);
     if (targetCorrectText) targetCorrectText.textContent = `${targetPass} acertos de ${totalQuestions}`;
 
-    if (btnSelectSimulado1 && btnSelectSimulado2) {
-      btnSelectSimulado1.classList.toggle('active', currentExamId === 'simulado1');
-      btnSelectSimulado2.classList.toggle('active', currentExamId === 'simulado2');
+    const switcherGroup = document.querySelector('.exam-switcher-group');
+    if (switcherGroup) {
+      const currentCourse = COURSES_CATALOG.find(c => c.id === cfg.courseId);
+      const courseExamIds = currentCourse ? currentCourse.exams : [currentExamId];
+      switcherGroup.innerHTML = courseExamIds.map((exId, idx) => {
+        const exObj = EXAMS_CONFIG[exId];
+        const isActive = exId === currentExamId;
+        const icon = idx === 0 ? '📘' : '📙';
+        return `
+          <button class="exam-switch-btn ${isActive ? 'active' : ''}" data-switch-exam="${exObj.id}" title="${escapeHtml(exObj.title)}">
+            <span>${icon}</span> ${escapeHtml(exObj.shortName)}
+          </button>
+        `;
+      }).join('');
+
+      switcherGroup.querySelectorAll('button[data-switch-exam]').forEach(btn => {
+        btn.addEventListener('click', () => {
+          const targetId = btn.getAttribute('data-switch-exam');
+          if (targetId && targetId !== currentExamId) {
+            openExamLobby(targetId);
+          }
+        });
+      });
     }
 
     if (window.Leaderboard && typeof window.Leaderboard.setActiveExam === 'function') {
@@ -379,6 +546,9 @@ document.addEventListener('DOMContentLoaded', () => {
       } else if (examId === 'simulado1') {
         u.pathname = basePath;
         u.searchParams.set('simulado', '1');
+      } else if (examId && EXAMS_CONFIG[examId]) {
+        u.pathname = basePath;
+        u.searchParams.set('simulado', examId);
       } else {
         u.pathname = basePath;
       }
@@ -444,7 +614,7 @@ document.addEventListener('DOMContentLoaded', () => {
             <div class="course-card-top">
               <span class="course-code-badge">${escapeHtml(course.code)}</span>
               <span class="course-status-pill ${isAvailable ? 'available' : 'soon'}">
-                ${isAvailable ? `🟢 ${quizCount} Simulados` : '⏳ Em Breve'}
+                ${isAvailable ? `🟢 ${quizCount} ${quizCount === 1 ? 'Simulado' : 'Simulados'}` : '⏳ Em Breve'}
               </span>
             </div>
             <div class="course-provider-label">${escapeHtml(course.providerName)}</div>
@@ -1286,7 +1456,7 @@ document.addEventListener('DOMContentLoaded', () => {
       <div class="solution-panel ${isVisible ? 'visible' : ''}" id="solutionPanel">
         <div class="solution-panel-header">
           <span style="font-size: 1.3rem;">💡</span>
-          <span class="solution-title">Gabarito e Comentários Oficiais Microsoft</span>
+          <span class="solution-title">Gabarito e Comentários Técnicos Oficiais</span>
         </div>
 
         <div class="solution-section-block">
@@ -1310,12 +1480,12 @@ document.addEventListener('DOMContentLoaded', () => {
         </div>
 
         <div class="solution-section-block">
-          <div class="solution-section-title">Racional Oficial da Microsoft</div>
+          <div class="solution-section-title">Resumo Técnico / Racional Oficial</div>
           <div class="solution-content" style="font-style: italic;">"${escapeHtml(q.official_rationale)}"</div>
         </div>
 
         <div class="solution-section-block">
-          <div class="solution-section-title">Leituras Adicionais Recomendadas (Microsoft Learn)</div>
+          <div class="solution-section-title">Documentação Oficial Recomendada</div>
           <ul class="reading-links">${readingLinksHtml}</ul>
         </div>
       </div>
@@ -1573,22 +1743,19 @@ document.addEventListener('DOMContentLoaded', () => {
 
   function renderScoreReport(reportFilter = 'all') {
     let correctCount = 0;
-    let sec1Correct = 0;
-    let sec1Total = 0;
-    let sec2Correct = 0;
-    let sec2Total = 0;
+    const categoryStats = new Map();
 
     activeQuestions.forEach(q => {
       const correct = isQuestionCorrect(q);
       if (correct) correctCount++;
 
-      if (q.category.includes('Identificar conceitos')) {
-        sec1Total++;
-        if (correct) sec1Correct++;
-      } else {
-        sec2Total++;
-        if (correct) sec2Correct++;
+      const cat = q.category || 'Domínio Geral do Exame';
+      if (!categoryStats.has(cat)) {
+        categoryStats.set(cat, { correct: 0, total: 0 });
       }
+      const st = categoryStats.get(cat);
+      st.total++;
+      if (correct) st.correct++;
     });
 
     const percent = Math.round((correctCount / totalQuestions) * 100);
@@ -1604,13 +1771,40 @@ document.addEventListener('DOMContentLoaded', () => {
       </div>
     `;
 
-    const sec1Pct = sec1Total > 0 ? Math.round((sec1Correct / sec1Total) * 100) : 0;
-    sec1Percent.textContent = `${sec1Pct}% (${sec1Correct}/${sec1Total})`;
-    sec1Fill.style.width = `${sec1Pct}%`;
+    const sectionBarsContainer = document.getElementById('sectionBarsContainer');
+    if (sectionBarsContainer) {
+      const barColors = ['var(--ms-blue-primary)', '#2b88d8', '#005a9e', '#7b1fa2'];
+      let idx = 0;
+      let barsHtml = '';
+      for (const [catName, st] of categoryStats.entries()) {
+        const pct = st.total > 0 ? Math.round((st.correct / st.total) * 100) : 0;
+        const color = barColors[idx % barColors.length];
+        idx++;
+        barsHtml += `
+          <div class="section-bar-item">
+            <div class="section-bar-header">
+              <span>${escapeHtml(catName)}</span>
+              <span>${pct}% (${st.correct}/${st.total})</span>
+            </div>
+            <div class="section-bar-track">
+              <div class="section-bar-fill" style="width: ${pct}%; background-color: ${color};"></div>
+            </div>
+          </div>
+        `;
+      }
+      sectionBarsContainer.innerHTML = barsHtml;
+    } else if (sec1Percent && sec2Percent) {
+      const entries = [...categoryStats.values()];
+      const s1 = entries[0] || { correct: 0, total: 0 };
+      const s2 = entries[1] || { correct: 0, total: 0 };
+      const sec1Pct = s1.total > 0 ? Math.round((s1.correct / s1.total) * 100) : 0;
+      sec1Percent.textContent = `${sec1Pct}% (${s1.correct}/${s1.total})`;
+      sec1Fill.style.width = `${sec1Pct}%`;
 
-    const sec2Pct = sec2Total > 0 ? Math.round((sec2Correct / sec2Total) * 100) : 0;
-    sec2Percent.textContent = `${sec2Pct}% (${sec2Correct}/${sec2Total})`;
-    sec2Fill.style.width = `${sec2Pct}%`;
+      const sec2Pct = s2.total > 0 ? Math.round((s2.correct / s2.total) * 100) : 0;
+      sec2Percent.textContent = `${sec2Pct}% (${s2.correct}/${s2.total})`;
+      sec2Fill.style.width = `${sec2Pct}%`;
+    }
 
     const wrongCount = totalQuestions - correctCount;
     if (reportAllCount) reportAllCount.textContent = totalQuestions;
@@ -1756,7 +1950,7 @@ document.addEventListener('DOMContentLoaded', () => {
     attemptCount++;
     examStates[currentExamId].attemptCount = attemptCount;
     try {
-      const prefix = currentExamId === 'simulado1' ? 'ai901' : 'ai901_sim2';
+      const prefix = currentExamId === 'simulado1' ? 'ai901' : (currentExamId === 'simulado2' ? 'ai901_sim2' : currentExamId);
       sessionStorage.setItem(`${prefix}_attempt_count`, String(attemptCount));
       sessionStorage.setItem(`${prefix}_failed_questions`, JSON.stringify([...failedInPreviousAttempt]));
     } catch (e) {}

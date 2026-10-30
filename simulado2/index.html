@@ -209,23 +209,25 @@
       <div class="section-performance-card">
         <h3 style="margin-bottom: 1rem; font-size: 1.15rem;">Desempenho por Seção do Exame</h3>
         
-        <div class="section-bar-item">
-          <div class="section-bar-header">
-            <span>Identificar conceitos e recursos de IA (40-45%)</span>
-            <span id="sec1Percent">0%</span>
+        <div id="sectionBarsContainer">
+          <div class="section-bar-item">
+            <div class="section-bar-header">
+              <span>Identificar conceitos e recursos de IA (40-45%)</span>
+              <span id="sec1Percent">0%</span>
+            </div>
+            <div class="section-bar-track">
+              <div class="section-bar-fill" id="sec1Fill" style="width: 0%; background-color: var(--ms-blue-primary);"></div>
+            </div>
           </div>
-          <div class="section-bar-track">
-            <div class="section-bar-fill" id="sec1Fill" style="width: 0%; background-color: var(--ms-blue-primary);"></div>
-          </div>
-        </div>
 
-        <div class="section-bar-item">
-          <div class="section-bar-header">
-            <span>Implementar soluções de IA com o Microsoft Foundry (50-55%)</span>
-            <span id="sec2Percent">0%</span>
-          </div>
-          <div class="section-bar-track">
-            <div class="section-bar-fill" id="sec2Fill" style="width: 0%; background-color: #2b88d8;"></div>
+          <div class="section-bar-item">
+            <div class="section-bar-header">
+              <span>Implementar soluções de IA com o Microsoft Foundry (50-55%)</span>
+              <span id="sec2Percent">0%</span>
+            </div>
+            <div class="section-bar-track">
+              <div class="section-bar-fill" id="sec2Fill" style="width: 0%; background-color: #2b88d8;"></div>
+            </div>
           </div>
         </div>
       </div>
@@ -376,6 +378,10 @@
   <!-- Scripts -->
   <script src="../simulado_data.js"></script>
   <script src="../simulado2_data.js"></script>
+  <script src="../az900_data.js"></script>
+  <script src="../dp900_data.js"></script>
+  <script src="../aws_data.js"></script>
+  <script src="../gcp_data.js"></script>
   <script src="../firebase_config.js"></script>
   <script src="../leaderboard.js"></script>
   <script src="../app.js"></script>
